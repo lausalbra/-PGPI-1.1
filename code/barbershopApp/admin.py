@@ -1,5 +1,5 @@
 from django.contrib import admin
-from barbershopApp.models import Servicios
+from barbershopApp.models import Servicioss
 
 # Register your models here.
-admin.site.register(Servicios)
+admin.site.register(Servicioss)

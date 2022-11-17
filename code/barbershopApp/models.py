@@ -6,5 +6,5 @@ class Servicios(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
     hora = models.DateTimeField(null=False)
     disponible = models.BooleanField(blank=False, null=False)
-    imagen = models.ImageField(upload_to='barbershopApp/media', null=False, blank=False)
+    imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)

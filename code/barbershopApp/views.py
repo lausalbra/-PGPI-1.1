@@ -4,32 +4,64 @@ from .forms import *
 
 from .models import *
 from PIL import Image
+from django.db.models import Q
 
 # Create your views here.
 
 def home(request):
+    
     return render(request, 'index.html')
 
 ##########################################LISTs##########################################
 
 def list_cortes(request):
-    servicios = Cortes.objects.all()
+    queryset=request.GET.get("buscar")
+    servicios = Cortes.objects.filter(
+            Q(disponible = True))
+    if queryset:
+        servicios = Cortes.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
     return render(request, 'cortes/cortes.html', {'cortes' : servicios})
 
 def list_barbas(request):
-    servicios = Barba.objects.all()
+    queryset=request.GET.get("buscar")
+    servicios = Barba.objects.filter(
+            Q(disponible = True))
+    if queryset:
+        servicios = Barba.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
     return render(request, 'barbas/barba.html', {'barbas' : servicios})
 
 def list_tintes(request):
-    servicios = Tinte.objects.all()
+    queryset=request.GET.get("buscar")
+    servicios = Tinte.objects.filter(
+            Q(disponible = True))
+    if queryset:
+        servicios = Tinte.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
     return render(request, 'tintes/tinte.html', {'tintes' : servicios})
 
 def list_peinados(request):
-    servicios = Peinado.objects.all()
+    queryset=request.GET.get("buscar")
+    servicios = Peinado.objects.filter(
+            Q(disponible = True))
+    if queryset:
+        servicios = Peinado.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
     return render(request, 'peinados/peinado.html', {'peinados' : servicios})
 
 def list_esteticas(request):
-    servicios = Estética.objects.all()
+    queryset=request.GET.get("buscar")
+    servicios = Estética.objects.filter(
+            Q(disponible = True))
+    if queryset:
+        servicios = Estética.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
     return render(request, 'esteticas/estetica.html', {'esteticas' : servicios})
 
 ############################################################################SHOWs##################################

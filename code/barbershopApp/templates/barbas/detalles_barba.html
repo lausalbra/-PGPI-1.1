@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>El servicio elegido ha sido el que tiene el nombre de {{servicio.nombre}}</h2>
+<table border="5" style="margin: 0 auto;">
+    <tr>
+        <td>Descripcion</td>
+        <td>Precio</td>
+    </tr>
+    <tr>
+        <td>{{servicio.descripcion}}</td>
+        <td>{{servicio.precio}}</td>
+        </tr>
+    </table>
+<br/>
+<br/>
+<br/>
+<br/>
+<button><a href="{% url 'home' %}">Volver al listado</a></button>
+
+<br/>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Save
+    </button>
+</form>
+
+{% endblock %}

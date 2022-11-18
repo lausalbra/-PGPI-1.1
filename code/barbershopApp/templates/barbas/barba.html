@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 <div>
-    {% if servicios.count > 0 %}
+    {% if barbas.count > 0 %}
     <table border="5" style="margin: 0 auto;">
         <tr>
             <td>Nombre</td>
             <td>Hora</td>
             <td>Disponible</td>
         </tr>
-        {% for s in servicios %}
+        {% for s in barbas %}
             <tr>
-                <td><a href="{{s.id}}">{{s.nombre}}</a></td>
+                <td><a href="{% url 'barbas' %}/{{s.id}}">{{s.nombre}}</a></td>
                 <td>{{s.hora}}</td>
                 {% if s.disponible == True %}
                 <td>✅</td>

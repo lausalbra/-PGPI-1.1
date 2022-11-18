@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    {% if peinados.count > 0 %}
+    <table border="5" style="margin: 0 auto;">
+        <tr>
+            <td>Nombre</td>
+            <td>Hora</td>
+            <td>Disponible</td>
+        </tr>
+        {% for s in peinados %}
+            <tr>
+                <td><a href="{% url 'peinados' %}/{{s.id}}">{{s.nombre}}</a></td>
+                <td>{{s.hora}}</td>
+                {% if s.disponible == True %}
+                <td>✅</td>
+                {% else %}
+                <td>❌</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+{% endblock %}

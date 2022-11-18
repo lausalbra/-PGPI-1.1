@@ -9,8 +9,10 @@ from django.db.models import Q
 # Create your views here.
 
 def home(request):
-    
     return render(request, 'index.html')
+
+def nosotros(request):
+    return render(request, 'nosotros.html')
 
 ##########################################LISTs##########################################
 

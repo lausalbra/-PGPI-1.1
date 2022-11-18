@@ -18,4 +18,18 @@
 <br/>
 <button><a href="{% url 'home' %}">Volver al listado</a></button>
 
+<br/>
+{% if servicio.disponible == True %}
+<h2>Si quieres solicitar este servicio debes de rellenar el siguiente formulario con tus datos personales que aparece justo debajo</h2>
+
+{{error}}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">
+        Save
+    </button>
+</form>
+{% endif %}
+
 {% endblock %}

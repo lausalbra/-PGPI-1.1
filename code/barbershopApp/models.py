@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 
+##########################SERVICIOS######################################################################
+
 class Cortes(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
     hora = models.DateTimeField(null=False)
@@ -41,6 +43,8 @@ class Estética(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
+
+##########################CLIENTE######################################################################
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)

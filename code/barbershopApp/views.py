@@ -91,10 +91,13 @@ def details_corte(request, servicio_id):
             form = ClienteForm(request.POST)
             nuevo_cliente = form.save(commit= False)
             nuevo_cliente.save()
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
             return redirect('home')
         except ValueError:
             return render(request, 'cortes/detalles_corte.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
-
 
 def details_barba(request, servicio_id):
     if request.method == 'GET':
@@ -108,11 +111,13 @@ def details_barba(request, servicio_id):
             form = ClienteForm(request.POST)
             nuevo_cliente = form.save(commit= False)
             nuevo_cliente.save()
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
             return redirect('home')
         except ValueError:
             return render(request, 'barbas/detalles_barba.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
-
-
 
 def details_tinte(request, servicio_id):
     if request.method == 'GET':
@@ -126,10 +131,13 @@ def details_tinte(request, servicio_id):
             form = ClienteForm(request.POST)
             nuevo_cliente = form.save(commit= False)
             nuevo_cliente.save()
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
             return redirect('home')
         except ValueError:
             return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
-
 
 
 def details_peinado(request, servicio_id):
@@ -144,10 +152,13 @@ def details_peinado(request, servicio_id):
             form = ClienteForm(request.POST)
             nuevo_cliente = form.save(commit= False)
             nuevo_cliente.save()
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
             return redirect('home')
         except ValueError:
             return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
-
 
 
 def details_estetica(request, servicio_id):
@@ -162,6 +173,10 @@ def details_estetica(request, servicio_id):
             form = ClienteForm(request.POST)
             nuevo_cliente = form.save(commit= False)
             nuevo_cliente.save()
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
             return redirect('home')
         except ValueError:
             return render(request, 'esteticas/detalles_estetica.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})

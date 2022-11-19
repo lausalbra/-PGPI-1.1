@@ -9,7 +9,18 @@ from django.db.models import Q
 # Create your views here.
 
 def home(request):
-    return render(request, 'index.html')
+    data = {
+        'form' : ContactoForm
+    }
+    if request.method == 'POST':
+        formulario = ContactoForm(data = request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] = 'contacto guardado'
+        else:
+            data['form'] = formulario
+
+    return render(request, 'index.html',data)
 
 def nosotros(request):
     return render(request, 'nosotros.html')

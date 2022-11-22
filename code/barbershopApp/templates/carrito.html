@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="content">
+    {% if request.session.carrito.items %}
+    {% for key, value in request.session.carrito.items %}
+    <table border="12" style="margin: 0 auto;">
+        <tr>
+            <td><strong>Nombre</td></strong>
+            <td><strong>Precio</td></strong>
+        </tr>
+        <tr>
+            <td style="color: blueviolet">{{value.nombre}}</td>
+            <td style="color: crimson;" align="center">{{value.precio}}</td>
+            <td><button type="submit">Devolver</button></td>
+        </tr>
+    </table>
+        {% endfor %}
+        <div class="container"><h3><strong>Total compra: {{total_carrito}} €</div></strong></h3>
+        <br>
+
+        {% else %}
+        <div class="alert alert-danger text-center"> Sin productos </div>
+        {% endif %}
+        
+</div>
+{% endblock %}

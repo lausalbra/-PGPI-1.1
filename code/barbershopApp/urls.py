@@ -4,6 +4,8 @@ from barbershopApp import views
 urlpatterns = [
    path('', views.home, name='home'),
    path('contacto/', views.contact, name = 'contact'),
+   path('carrito/', views.carrito, name='carrito'),
+
    path('servicios/cortes', views.list_cortes, name = 'cortes'),
    path('servicios/barba', views.list_barbas, name = 'barbas'),
    path('servicios/tinte', views.list_tintes, name = 'tintes'),

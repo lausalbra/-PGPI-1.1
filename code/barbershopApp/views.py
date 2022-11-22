@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
+from .carrito import Carrito
+
 from .forms import *
 
 from .models import *
@@ -21,7 +23,6 @@ def contact(request):
             return redirect('home')
         except ValueError:
             return render(request, 'contacto.html', {'form' : ContactoForm, 'error' : form.errors})
-
 
 ##########################################LISTs##########################################
 
@@ -91,6 +92,12 @@ def details_corte(request, servicio_id):
             setattr(servicio, 'disponible', False)
             servicio.save()
             ###############################
+
+            #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
             return redirect('home')
         except ValueError:
             return render(request, 'cortes/detalles_corte.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
@@ -109,6 +116,12 @@ def details_barba(request, servicio_id):
             setattr(servicio, 'disponible', False)
             servicio.save()
             ###############################
+
+             #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
             return redirect('home')
         except ValueError:
             return render(request, 'barbas/detalles_barba.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
@@ -127,6 +140,12 @@ def details_tinte(request, servicio_id):
             setattr(servicio, 'disponible', False)
             servicio.save()
             ###############################
+
+             #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
             return redirect('home')
         except ValueError:
             return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
@@ -146,6 +165,12 @@ def details_peinado(request, servicio_id):
             setattr(servicio, 'disponible', False)
             servicio.save()
             ###############################
+
+            #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
             return redirect('home')
         except ValueError:
             return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
@@ -165,6 +190,18 @@ def details_estetica(request, servicio_id):
             setattr(servicio, 'disponible', False)
             servicio.save()
             ###############################
+
+             #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
             return redirect('home')
         except ValueError:
             return render(request, 'esteticas/detalles_estetica.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
+
+
+######################################################CARRITO#############################################
+
+def carrito(request):
+    return render(request, 'carrito.html')

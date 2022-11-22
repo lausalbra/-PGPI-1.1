@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="contact">
+    <div class="container">
+        <h2><strong style="color: blueviolet">FORMULARIO DE ATENCION AL CLIENTE</strong></h2>
+        {{error}}
+        <form id="request" class="main_form" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit"><h2 style="color: blue;">Enviar</button></h2>
+        </form>
+    </div>
+ </div>
+{% endblock %}

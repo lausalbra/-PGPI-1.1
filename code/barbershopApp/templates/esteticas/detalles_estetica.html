@@ -1,35 +1,36 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block content %}
-<h2>El servicio elegido ha sido el que tiene el nombre de {{servicio.nombre}}</h2>
-<table border="5" style="margin: 0 auto;">
-    <tr>
-        <td>Descripcion</td>
-        <td>Precio</td>
+<br>
+
+<div class="container">
+    <h2>El servicio elegido ha sido el que tiene el nombre de {{servicio.nombre}}</h2>
+    <br>
+    <table border="12" style="margin: 0 auto;">
+        <tr>
+            <td><strong>Descripcion</td></strong>
+        <td><strong>Precio</td></strong>
     </tr>
     <tr>
         <td>{{servicio.descripcion}}</td>
         <td>{{servicio.precio}}</td>
-        </tr>
+    </tr>
     </table>
+    <button><a href="{% url 'home' %}" style="color: blue;"><h2>Volver al listado</a></button></h2>
+</div>
 <br/>
-<br/>
-<br/>
-<br/>
-<button><a href="{% url 'home' %}">Volver al listado</a></button>
-
-<br/>
+<br>
 {% if servicio.disponible == True %}
-<h2>Si quieres solicitar este servicio debes de rellenar el siguiente formulario con tus datos personales que aparece justo debajo</h2>
+<div class="container">
+    <h2>Si quieres solicitar este servicio debes de rellenar el siguiente formulario con tus datos personales que aparece justo debajo</h2>
 
-{{error}}
-<form action="" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">
-        Save
-    </button>
-</form>
-{% endif %}
-
+    {{error}}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <br>
+        <button type="submit"><h2 style="color: blue;">Guardar solicitud</button></h2>
+    </form>
+    {% endif %}
+</div>
+<br>
 {% endblock %}

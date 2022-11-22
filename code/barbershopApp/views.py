@@ -3,27 +3,25 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .forms import *
 
 from .models import *
-from PIL import Image
 from django.db.models import Q
 
 # Create your views here.
 
 def home(request):
-    data = {
-        'form' : ContactoForm
-    }
-    if request.method == 'POST':
-        formulario = ContactoForm(data = request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            data['mensaje'] = 'contacto guardado'
-        else:
-            data['form'] = formulario
+    return render(request, 'index.html')
 
-    return render(request, 'index.html',data)
+def contact(request):
+    if request.method == 'GET':
+        return render(request, 'contacto.html', {'form' : ContactoForm})
+    else:
+        try:
+            form = ContactoForm(request.POST)
+            nuevo_cliente = form.save(commit= False)
+            nuevo_cliente.save()
+            return redirect('home')
+        except ValueError:
+            return render(request, 'contacto.html', {'form' : ContactoForm, 'error' : form.errors})
 
-def nosotros(request):
-    return render(request, 'nosotros.html')
 
 ##########################################LISTs##########################################
 
@@ -82,8 +80,6 @@ def list_esteticas(request):
 def details_corte(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Cortes, pk=servicio_id)
-        image = Image.open(servicio.imagen)
-        image.show()
         return render(request, 'cortes/detalles_corte.html', {'servicio': servicio, 'form' : ClienteForm})
     else:
         try:
@@ -102,8 +98,6 @@ def details_corte(request, servicio_id):
 def details_barba(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Barba, pk=servicio_id)
-        image = Image.open(servicio.imagen)
-        image.show()
         return render(request, 'barbas/detalles_barba.html', {'servicio': servicio, 'form' : ClienteForm})
     else:
         try:
@@ -122,8 +116,6 @@ def details_barba(request, servicio_id):
 def details_tinte(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Tinte, pk=servicio_id)
-        image = Image.open(servicio.imagen)
-        image.show()
         return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio, 'form' : ClienteForm})
     else:
         try:
@@ -143,8 +135,6 @@ def details_tinte(request, servicio_id):
 def details_peinado(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Peinado, pk=servicio_id)
-        image = Image.open(servicio.imagen)
-        image.show()
         return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'form' : ClienteForm})
     else:
         try:
@@ -164,8 +154,6 @@ def details_peinado(request, servicio_id):
 def details_estetica(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Estética, pk=servicio_id)
-        image = Image.open(servicio.imagen)
-        image.show()
         return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'form' : ClienteForm})
     else:
         try:
@@ -180,4 +168,3 @@ def details_estetica(request, servicio_id):
             return redirect('home')
         except ValueError:
             return render(request, 'esteticas/detalles_estetica.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
-    

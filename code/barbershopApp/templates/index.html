@@ -1,16 +1,142 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
-<h2>Contactenos</h2>
+<section class="banner_main">
+    <div id="myCarousel" class="carousel slide banner1" data-ride="carousel">
+       <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+       </ol>
+       <div class="carousel-inner">
+          <div class="carousel-item active">
+             <div class="container-fluid">
+                <div class="carousel-caption relative">
+                   <div class="row d_flex">
+                      <div class="col-md-6">
+                         <img src ="{% static 'media/Ilustracion_sin_titulo.png' %}" width="340"/>
+                      </div>
+                      <div class="col-md-6">
+                         <span>01/02</span>
+                         <h1>BarberShop</h1>
+                         <p>Una gran peluqueria en la que puedes reservar citas de los servicios que quieras;
+                            entre otras cosas
+                         </p>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="carousel-item">
+             <div class="container-fluid">
+                <div class="carousel-caption relative">
+                   <div class="row d_flex">
+                      <div class="col-md-6">
+                        <img src ="{% static 'media/Ilustracion_sin_titulo.png' %}" width="340"/>
+                      </div>
+                      <div class="col-md-6">
+                         <span>02/02</span>
+                         <h1>BarberShop</h1>
+                         <p>Una gran peluqueria en la que puedes reservar citas de los servicios que quieras;
+                            entre otras cosas</p>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       
+          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+          <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+          <span class="sr-only">Next</span>
+          </a>
+       </div>
+    </div>
+ </section>
+ 
+ <div class="we_do slin">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <div class="titlepage">
+                <h2>Servicios que ofrecemos</h2>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col-lg-10 offset-lg-1 col-md-12">
+             <div class="row">
+                <div class="col-md-3 col-sm-6">
+                   <div class="we_box">
+                      <i><img src="{% static 'media/mujer.png' %}" width="120" alt="#"/></i>
+                      <button><a href="{% url 'cortes' %}"><h3>Cortes</h3></a></button>
+                      <p>Cortes tanto de hombre como para mujeres. Para mas info click en cortes:</p>
+                   </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                   <div class="we_box">
+                      <i><img src="{% static 'media/hipster-barba-mannueldesign-peluqueria-caballeros-mortalaz_hrcWI2x.png' %}"  width="120" alt="#"/></i>
+                      <button><a href="{% url 'barbas' %}"><h3>Barbas</h3></a></button>
+                      <p>Diferentes estilos de barbas. Para mas info click en barbas:</p>
+                   </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                   <div class="we_box">
+                      <i><img src="{% static 'media/mecha.jpg' %}"  width="120" alt="#"/></i>
+                      <button><a href="{% url 'tintes' %}"><h3>Tintes</h3></a></button>
+                      <p>Diferentes tipos de tintes. Para mas info click en tintes:</p>
+                   </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                   <div class="we_box">
+                      <i><img src="{% static 'media/pelo_largo.png' %}"  width="120" alt="#"/></i>
+                      <button><a href="{% url 'peinados' %}"><h3>Peinados</h3></a></button>
+                      <p>Ofrecemos diferentes tipos de peinados. Para mas info click en peinados</p>
+                   </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="we_box">
+                       <i><img src="{% static 'media/Depilacion-de-Cejas.jpg' %}"  width="180" alt="#"/></i>
+                       <button><a href="{% url 'esteticas' %}"><h3>Esteticas</h3></a></button>
+                       <p>Nuestras estéticas son de última moda. Para mas info click en esteticas:</p>
+                    </div>
+                 </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ 
+ <div class="about slin2">
+    <div class="container">
+       <div class="row d_flex">
+          <div class="col-md-6">
+             <div class="titlepage">
+                <h2>Sobre nosotros</h2>
+                <p>Somos una peluquería llamada barbershop, nos puedes localizar y contactar acorde a los datos de abajo</p>
+             </div>
+          </div>
+          <div class="col-md-6">
+             <div class="about_img">
+                <figure><img src="{% static 'media/Ilustracion_sin_titulo.png' %}" alt="#"  height="32"/></figure>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
 
-<form action="" class="formulario_contacto" method="post">
-
-    {% csrf_token %}
-
-     {{form.as_p}}
-     <br>
-    <button type="submit" id="btnEnviar" class="button">Enviar</button>
-
-</form>
-
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-md-12">
+         <div class="map_main">
+            <div class="map-responsive">
+               <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Escuela+Técnica+Superior+de+Ingeniería+Informática" width="600" height="386" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 {% endblock %}

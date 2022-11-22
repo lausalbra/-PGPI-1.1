@@ -3,7 +3,7 @@ from barbershopApp import views
 
 urlpatterns = [
    path('', views.home, name='home'),
-   path('nosotros/', views.nosotros, name='nosotros'),
+   path('contacto/', views.contact, name = 'contact'),
    path('servicios/cortes', views.list_cortes, name = 'cortes'),
    path('servicios/barba', views.list_barbas, name = 'barbas'),
    path('servicios/tinte', views.list_tintes, name = 'tintes'),

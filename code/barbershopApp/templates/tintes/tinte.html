@@ -1,31 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
+<br>
+<br>
+<br>
 <div class="col-md-12 search">
+  <h2>Tintes disponibles</h2>
     <form method="get">
       <div id="custom-search-input">
         <div class="input-group col-md-12">
           <input type="text" class="from-control" placeholder="Buscar.." name="buscar">
           <span class="input-group-list">
-            <i class="icon icon-search"></i>
             <button type="submit" class="boton btn-success">Buscar</button>
           </span>
         </div>
-
       </div>
     </form>
-</div>
-<h4>Tinte</h4>
-<div>
     {% if tintes.count > 0 %}
-    <table border="5" style="margin: 0 auto;">
+    <table border="12" style="margin: 0 auto;">
         <tr>
-            <td>Nombre</td>
-            <td>Hora</td>
-            <td>Disponible</td>
+            <td><strong>Nombre</td></strong>
+            <td><strong>Hora</td></strong>
+            <td><strong>Disponible</td></strong>
         </tr>
         {% for s in tintes %}
             <tr>
-                <td><a href="{% url 'tintes' %}/{{s.id}}">{{s.nombre}}</a></td>
+                <td><a href="{% url 'tintes' %}/{{s.id}}" style="color: blue;">{{s.nombre}}</a></td>
                 <td>{{s.hora}}</td>
                 {% if s.disponible == True %}
                 <td>✅</td>
@@ -33,8 +32,10 @@
                 <td>❌</td>
                 {% endif %}
             </tr>
-            {% endfor %}
+         {% endfor %}
         </table>
-        {% endif %}
-    </div>
+      {% endif %}
+</div>
+<br>
+<br>
 {% endblock %}

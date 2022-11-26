@@ -28,8 +28,7 @@ def contact(request):
 
 def list_cortes(request):
     queryset=request.GET.get("buscar")
-    servicios = Cortes.objects.filter(
-            Q(disponible = True))
+    servicios = Cortes.objects.all()
     if queryset:
         servicios = Cortes.objects.filter(
             Q(nombre__icontains = queryset)
@@ -38,8 +37,7 @@ def list_cortes(request):
 
 def list_barbas(request):
     queryset=request.GET.get("buscar")
-    servicios = Barba.objects.filter(
-            Q(disponible = True))
+    servicios = Barba.objects.all()
     if queryset:
         servicios = Barba.objects.filter(
             Q(nombre__icontains = queryset)
@@ -48,8 +46,7 @@ def list_barbas(request):
 
 def list_tintes(request):
     queryset=request.GET.get("buscar")
-    servicios = Tinte.objects.filter(
-            Q(disponible = True))
+    servicios = Tinte.objects.all()
     if queryset:
         servicios = Tinte.objects.filter(
             Q(nombre__icontains = queryset)
@@ -58,8 +55,7 @@ def list_tintes(request):
 
 def list_peinados(request):
     queryset=request.GET.get("buscar")
-    servicios = Peinado.objects.filter(
-            Q(disponible = True))
+    servicios = Peinado.objects.all()
     if queryset:
         servicios = Peinado.objects.filter(
             Q(nombre__icontains = queryset)
@@ -68,8 +64,7 @@ def list_peinados(request):
 
 def list_esteticas(request):
     queryset=request.GET.get("buscar")
-    servicios = Estética.objects.filter(
-            Q(disponible = True))
+    servicios = Estética.objects.all()
     if queryset:
         servicios = Estética.objects.filter(
             Q(nombre__icontains = queryset)
@@ -81,13 +76,10 @@ def list_esteticas(request):
 def details_corte(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Cortes, pk=servicio_id)
-        return render(request, 'cortes/detalles_corte.html', {'servicio': servicio, 'form' : ClienteForm})
+        return render(request, 'cortes/detalles_corte.html', {'servicio': servicio})
     else:
         try:
             servicio = get_object_or_404(Cortes, pk=servicio_id)
-            form = ClienteForm(request.POST)
-            nuevo_cliente = form.save(commit= False)
-            nuevo_cliente.save()
             ##SETEAR ATRIBUTO ENN BBDD
             setattr(servicio, 'disponible', False)
             servicio.save()
@@ -98,20 +90,18 @@ def details_corte(request, servicio_id):
             carrito.agregar(servicio)
             ###############################
 
-            return redirect('home')
+            return redirect('carrito')
         except ValueError:
-            return render(request, 'cortes/detalles_corte.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
+            return render(request, 'cortes/detalles_corte.html', {'servicio': servicio})
+
 
 def details_barba(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Barba, pk=servicio_id)
-        return render(request, 'barbas/detalles_barba.html', {'servicio': servicio, 'form' : ClienteForm})
+        return render(request, 'barbas/detalles_barba.html', {'servicio': servicio})
     else:
         try:
             servicio = get_object_or_404(Barba, pk=servicio_id)
-            form = ClienteForm(request.POST)
-            nuevo_cliente = form.save(commit= False)
-            nuevo_cliente.save()
             ##SETEAR ATRIBUTO ENN BBDD
             setattr(servicio, 'disponible', False)
             servicio.save()
@@ -122,20 +112,18 @@ def details_barba(request, servicio_id):
             carrito.agregar(servicio)
             ###############################
 
-            return redirect('home')
+            return redirect('carrito')
         except ValueError:
-            return render(request, 'barbas/detalles_barba.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
+            return render(request, 'barbas/detalles_barba.html', {'servicio': servicio})
+
 
 def details_tinte(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Tinte, pk=servicio_id)
-        return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio, 'form' : ClienteForm})
+        return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio})
     else:
         try:
             servicio = get_object_or_404(Tinte, pk=servicio_id)
-            form = ClienteForm(request.POST)
-            nuevo_cliente = form.save(commit= False)
-            nuevo_cliente.save()
             ##SETEAR ATRIBUTO ENN BBDD
             setattr(servicio, 'disponible', False)
             servicio.save()
@@ -146,21 +134,18 @@ def details_tinte(request, servicio_id):
             carrito.agregar(servicio)
             ###############################
 
-            return redirect('home')
+            return redirect('carrito')
         except ValueError:
-            return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
+            return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio})
 
 
 def details_peinado(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Peinado, pk=servicio_id)
-        return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'form' : ClienteForm})
+        return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio})
     else:
         try:
             servicio = get_object_or_404(Peinado, pk=servicio_id)
-            form = ClienteForm(request.POST)
-            nuevo_cliente = form.save(commit= False)
-            nuevo_cliente.save()
             ##SETEAR ATRIBUTO ENN BBDD
             setattr(servicio, 'disponible', False)
             servicio.save()
@@ -171,21 +156,18 @@ def details_peinado(request, servicio_id):
             carrito.agregar(servicio)
             ###############################
 
-            return redirect('home')
+            return redirect('carrito')
         except ValueError:
-            return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
+            return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio})
 
 
 def details_estetica(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Estética, pk=servicio_id)
-        return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'form' : ClienteForm})
+        return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio})
     else:
         try:
             servicio = get_object_or_404(Estética, pk=servicio_id)
-            form = ClienteForm(request.POST)
-            nuevo_cliente = form.save(commit= False)
-            nuevo_cliente.save()
             ##SETEAR ATRIBUTO ENN BBDD
             setattr(servicio, 'disponible', False)
             servicio.save()
@@ -196,20 +178,15 @@ def details_estetica(request, servicio_id):
             carrito.agregar(servicio)
             ###############################
 
-            return redirect('home')
+            return redirect('carrito')
         except ValueError:
-            return render(request, 'esteticas/detalles_estetica.html', {'servicio': servicio, 'form' : ClienteForm, 'error' : form.errors})
+            return render(request, 'esteticas/detalles_estetica.html', {'servicio': servicio})
 
 
 ######################################################CARRITO#############################################
 
 def carrito(request):
     return render(request, 'carrito.html')
-
-"""def prueba(request):
-    precio = total_carrito(request)
-    valor = precio.get('total_carrito')
-    return render(request, 'precio.html', {'precio' : valor})"""
 
 def pago(request):
     return render(request, 'pagos.html')

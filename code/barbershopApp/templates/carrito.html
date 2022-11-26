@@ -1,24 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-
 <div class="content">
     {% if request.session.carrito.items %}
-    {% for key, value in request.session.carrito.items %}
     <table border="12" style="margin: 0 auto;">
         <tr>
             <td><strong>Nombre</td></strong>
             <td><strong>Precio</td></strong>
         </tr>
+        {% for key, value in request.session.carrito.items %}
         <tr>
             <td style="color: blueviolet">{{value.nombre}}</td>
             <td style="color: crimson;" align="center">{{value.precio}}</td>
-            <td><button type="submit">Devolver</button></td>
+            <td><form action="" method="post">
+                {% csrf_token %}
+                <button type="submit" id ="boton01">Devolver</button>
+            </form>
         </tr>
+        {% endfor %} 
     </table>
-        {% endfor %}
-        <div class="container"><h3><strong>Total compra: {{total_carrito}} €</div></strong></h3>
-        <br>
+  
+    <div class="container">
+        <h3><strong>Total compra: {{total_carrito}} €</strong></h3>
+        <button><a href="{% url 'pago' %}"><p class="container">Pagar</p></a></button>
+    </div>
+    <br>
+
+        <!-- SISTEMA DE DEVOLUCION 
+        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            //$(document).ready(function() {
+                //$("#boton01").click(function(event) {
+                 //   $("#boton01").remove();
+                //});
+                //$("#boton01").click(function(event) {
+                //    $("#boton02").remove();               
+                //});
+                document.getElementById("boton01").remove();
+                document.getElementById("boton02").remove();
+                document.getElementById("boton03").remove();
+                
+                
+            //});
+         </script>
+         -->
 
         {% else %}
         <div class="alert alert-danger text-center"> Sin productos </div>

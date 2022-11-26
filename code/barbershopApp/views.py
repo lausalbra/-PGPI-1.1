@@ -1,12 +1,12 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .carrito import Carrito
-
 from .forms import *
-
 from .models import *
 from django.db.models import Q
-
+from .context_processor import total_carrito
+import stripe
+stripe.api_key= 'sk_test_51M7HevKBgV3pJGUTG1vx5xjV9Ru0kiKRL18MESqFLPbJ2Ch8OROkZfKT2NExOv49hn008Frkf7gId1305x53YGAx00L46Hi2SK'
 # Create your views here.
 
 def home(request):
@@ -205,3 +205,35 @@ def details_estetica(request, servicio_id):
 
 def carrito(request):
     return render(request, 'carrito.html')
+
+"""def prueba(request):
+    precio = total_carrito(request)
+    valor = precio.get('total_carrito')
+    return render(request, 'precio.html', {'precio' : valor})"""
+
+def pago(request):
+    return render(request, 'pagos.html')
+
+def cargo(request):
+    if request.method == 'POST':
+        nombre = request.POST["nombre"]
+        email = request.POST["email"]
+        customer = stripe.Customer.create(
+            email=email,
+            name=nombre,
+            source = request.POST['stripeToken']
+        )
+
+        precio = total_carrito(request)
+        valor = precio.get('total_carrito')
+
+        charge = stripe.Charge.create(
+            customer=customer,
+            amount=valor*100,
+            currency='mxn',
+            description = 'Pago realizado'
+        )
+
+        #faltaria borrar el carrito entero
+        
+    return redirect('home')

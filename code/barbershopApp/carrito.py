@@ -23,8 +23,7 @@ class Carrito:
         self.session["carrito"]  = self.carrito
         self.session.modified = True
 
-    def devolver(self, producto):
-        id = str(producto.id)
-        if id in self.carrito[id]:
-            del self.carrito[id]
+    def devolver(self, nombre_producto):
+        if nombre_producto in self.carrito['nombre_producto']:
+            del self.carrito['nombre_producto']
             self.guardar_carrito()

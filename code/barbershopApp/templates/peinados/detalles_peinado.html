@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 <br>
 
 <div class="container">
@@ -15,20 +16,16 @@
         <td>{{servicio.precio}}</td>
     </tr>
     </table>
-    <button><a href="{% url 'home' %}" style="color: blue;"><h2>Volver al listado</a></button></h2>
+    <button><a href="{% url 'peinados' %}" style="color: blue;"><h2>Volver al listado</a></button></h2>
 </div>
 <br/>
 <br>
 {% if servicio.disponible == True %}
 <div class="container">
-    <h2>Si quieres solicitar este servicio debes de rellenar el siguiente formulario con tus datos personales que aparece justo debajo</h2>
-
-    {{error}}
     <form action="" method="post">
         {% csrf_token %}
-        {{form.as_p}}
-        <br>
-        <button type="submit"><h2 style="color: blue;">Guardar solicitud</button></h2>
+        <button type="submit"><h2 style="color: blue;">Agregar al carrito</button></h2>
+        <img src="{% static 'media/carrito.png' %}" alt="#" width="60" >
     </form>
     {% endif %}
 </div>

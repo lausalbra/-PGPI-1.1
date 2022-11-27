@@ -6,7 +6,9 @@ from .models import *
 from django.db.models import Q
 from .context_processor import *
 import stripe
+
 stripe.api_key= 'sk_test_51M7HevKBgV3pJGUTG1vx5xjV9Ru0kiKRL18MESqFLPbJ2Ch8OROkZfKT2NExOv49hn008Frkf7gId1305x53YGAx00L46Hi2SK'
+
 # Create your views here.
 
 def home(request):
@@ -216,4 +218,7 @@ def cargo(request):
         carrito = Carrito(request)
         carrito.limpiar_carrito()
         
-    return redirect('home')
+    return redirect('gracias')
+
+def gracias(request):
+    return render(request, 'gracias.html')

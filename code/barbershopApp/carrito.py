@@ -26,3 +26,9 @@ class Carrito:
     def limpiar_carrito(self):
         self.session["carrito"] = {}
         self.session.modified = True
+
+    def borrar(self, producto):
+        id = str(producto.id)
+        if id in self.carrito[id]:
+            del self.carrito[id]
+        self.guardar_carrito()

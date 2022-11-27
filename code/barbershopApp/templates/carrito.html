@@ -17,14 +17,22 @@
     </table>
   
     <div class="container">
-        <h3><strong>Total compra: {{total_carrito}} €</strong></h3>
-        <button><a href="{% url 'pago' %}"><p class="container">Pagar</p></a></button>
+        <div class="col-md-12">
+            <h3 style="color: red"><strong>Total compra: {{total_carrito}} €</strong></h3>
+            <button class="btn btn-primary"><a href="{% url 'pago' %}"><p class="container" style="color: white">Pagar</p></a></button>
+            <br>
+            <br>
+        </div>
+
+        <div class="col-xs-6 col-sm-3">
+            <button class="btn btn-lg btn-success"><a href="{% url 'home' %}"><p class="container" style="color: white">Volver</p></a></button>
+        </div>
     </div>
-    <br>
 
     {% else %}
     <div class="alert alert-danger text-center"> Sin productos </div>
     {% endif %}
         
 </div>
+<br>
 {% endblock %}

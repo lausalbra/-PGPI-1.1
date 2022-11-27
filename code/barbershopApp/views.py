@@ -4,7 +4,7 @@ from .carrito import Carrito
 from .forms import *
 from .models import *
 from django.db.models import Q
-from .context_processor import total_carrito
+from .context_processor import *
 import stripe
 stripe.api_key= 'sk_test_51M7HevKBgV3pJGUTG1vx5xjV9Ru0kiKRL18MESqFLPbJ2Ch8OROkZfKT2NExOv49hn008Frkf7gId1305x53YGAx00L46Hi2SK'
 # Create your views here.
@@ -187,6 +187,8 @@ def details_estetica(request, servicio_id):
 
 def carrito(request):
     return render(request, 'carrito.html')
+
+##########################################PASARELA DE PAGO####################################################
 
 def pago(request):
     return render(request, 'pagos.html')

@@ -27,3 +27,7 @@ class Carrito:
         if nombre_producto in self.carrito['nombre_producto']:
             del self.carrito['nombre_producto']
             self.guardar_carrito()
+
+    def limpiar_carrito(self):
+        self.session["carrito"] = {}
+        self.session.modified = True

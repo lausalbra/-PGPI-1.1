@@ -206,11 +206,12 @@ def cargo(request):
 
         charge = stripe.Charge.create(
             customer=customer,
-            amount=valor*100,
+            amount=valor*1000,
             currency='mxn',
             description = 'Pago realizado'
         )
 
-        #faltaria borrar el carrito entero
+        carrito = Carrito(request)
+        carrito.limpiar_carrito()
         
     return redirect('home')

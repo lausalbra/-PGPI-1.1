@@ -9,6 +9,7 @@ urlpatterns = [
 
    path('carrito/pago', views.pago, name='pago'),
    path('cargo/', views.cargo, name='cargo'),
+   path('gracias/', views.gracias, name='gracias'),
 
    path('servicios/cortes', views.list_cortes, name = 'cortes'),
    path('servicios/barba', views.list_barbas, name = 'barbas'),
@@ -21,4 +22,5 @@ urlpatterns = [
    path('servicios/tinte/<int:servicio_id>/', views.details_tinte, name='detalles_tinte'),
    path('servicios/peinado/<int:servicio_id>/', views.details_peinado, name='detalles_peinado'),
    path('servicios/estetica/<int:servicio_id>/', views.details_estetica, name='detalles_estetica'),
+   
 ]

@@ -7,6 +7,7 @@ from .forms import *
 from .models import *
 from django.db.models import Q
 from .context_processor import *
+
 import stripe
 
 stripe.api_key= 'sk_test_51M7HevKBgV3pJGUTG1vx5xjV9Ru0kiKRL18MESqFLPbJ2Ch8OROkZfKT2NExOv49hn008Frkf7gId1305x53YGAx00L46Hi2SK'
@@ -209,6 +210,7 @@ def cargo(request):
 
         precio = total_carrito(request)
         valor = precio.get('total_carrito')
+        id_pedido = request.POST['stripeToken']
 
         charge = stripe.Charge.create(
             customer=customer,
@@ -223,10 +225,9 @@ def cargo(request):
         ###RECIBO DE EMAIL####
 
         subject = "Pago realizado"
-        message = "Se ha realizado su pedido correctamente: \n, la cantidad pagada es de: " + str(valor) + "€"
+        message = "Se ha realizado su pedido correctamente: \n La cantidad pagada es de: " + str(valor) + "€. \n Tu id del pedido es: " + str(id_pedido)
         email_from = settings.EMAIL_HOST_USER
-        email = request.POST['email']
-        recipient_list = [email]
+        recipient_list = [request.POST['email']]
 
         send_mail(subject, message, email_from, recipient_list)
 

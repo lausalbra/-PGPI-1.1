@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.shortcuts import get_object_or_404, redirect, render
+from django.core.mail import send_mail
 
 from .carrito import Carrito
 from .forms import *
@@ -217,7 +219,17 @@ def cargo(request):
 
         carrito = Carrito(request)
         carrito.limpiar_carrito()
-        
+
+        ###RECIBO DE EMAIL####
+
+        subject = "Pago realizado"
+        message = "Se ha realizado su pedido correctamente: \n, la cantidad pagada es de: " + str(valor) + "€"
+        email_from = settings.EMAIL_HOST_USER
+        email = request.POST['email']
+        recipient_list = [email]
+
+        send_mail(subject, message, email_from, recipient_list)
+
     return redirect('gracias')
 
 def gracias(request):

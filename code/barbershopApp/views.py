@@ -222,3 +222,6 @@ def cargo(request):
 
 def gracias(request):
     return render(request, 'gracias.html')
+
+def terminos(request):
+    return render(request,'terminos.html')

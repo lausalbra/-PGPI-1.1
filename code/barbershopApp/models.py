@@ -50,7 +50,7 @@ class Cliente(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
     apellidos =  models.CharField(max_length=100, blank=False, null=False)
     fecha_nacimiento = models.DateField(blank=False, null=False)
-    email = models.EmailField(blank=False, null=False)
+    email = models.EmailField(blank=False, null=False, unique=True)
 
 ################################################FORMULARIO DE CONTACTO##############################3
 

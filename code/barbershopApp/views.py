@@ -17,6 +17,18 @@ stripe.api_key= 'sk_test_51M7HevKBgV3pJGUTG1vx5xjV9Ru0kiKRL18MESqFLPbJ2Ch8OROkZf
 def home(request):
     return render(request, 'index.html')
 
+def registro_cliente(request):
+    if request.method == 'GET':
+        return render(request, 'cliente.html', {'form' : ClienteForm})
+    else:
+        try:
+            form = ClienteForm(request.POST)
+            nuevo_cliente = form.save(commit= False)
+            nuevo_cliente.save()
+            return redirect('home')
+        except ValueError:
+            return render(request, 'cliente.html', {'form' : ClienteForm, 'error' : form.errors})
+
 def contact(request):
     if request.method == 'GET':
         return render(request, 'contacto.html', {'form' : ContactoForm})

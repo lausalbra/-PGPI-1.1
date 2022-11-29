@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<br>
+<br>
+<div class="col-sm-6" align="center">
+    <p>{{error}}</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_div}}
+        <button type="submit" class="btn btn-lg btn-success">Registro</button>
+    </form>
+</div>
+<br>
+<br>
+{% endblock %}

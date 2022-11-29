@@ -1,3 +1,5 @@
+from .models import *
+
 class Carrito:
     def __init__(self, request):
         self.request = request

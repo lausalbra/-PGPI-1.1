@@ -24,6 +24,7 @@ urlpatterns = [
    path('servicios/estetica/<int:servicio_id>/', views.details_estetica, name='detalles_estetica'),
 
    path('terminos/', views.terminos, name='terminos'),
-   path('registro/cliente', views.registro_cliente, name='registro')
+   path('registro/cliente', views.registro_cliente, name='registro'),
+   path('seguimiento/', views.seguimiento, name='seguimiento'),
    
 ]

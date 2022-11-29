@@ -44,6 +44,30 @@ class Estética(models.Model):
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
 
+##########################SEGUIMIENTO######################################################################
+
+opciones_pago = [
+    [0, "reservado"],
+    [1, "pagado"],
+    [2, "pendiente de pago"],
+]
+
+opciones_seguimiento = [
+    [0, "servicio realizado"],
+    [1, "servicio pendiente"],
+]
+
+
+class Seguimiento(models.Model):
+    seguimiento_id = models.CharField(max_length=70)
+    corte_id = models.ForeignKey(Cortes,on_delete=models.CASCADE)
+    barba_id = models.ForeignKey(Barba,on_delete=models.CASCADE)
+    tinte_id = models.ForeignKey(Tinte,on_delete=models.CASCADE)
+    peinado_id = models.ForeignKey(Peinado,on_delete=models.CASCADE)
+    estetica_id = models.ForeignKey(Estética,on_delete=models.CASCADE)
+    pago = models.IntegerField(choices=opciones_pago)
+    estado = models.IntegerField(choices=opciones_seguimiento)
+
 ##########################CLIENTE######################################################################
 
 class Cliente(models.Model):

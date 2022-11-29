@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+         <form method="get">
+            <div id="custom-search-input">
+               <div class="input-group col-md-12">
+                  <input type="text" class="from-control" placeholder="Buscar por ID de pedido" name="buscar">
+                  <span class="input-group-list">
+                  <button type="submit" class="boton btn-success">Buscar ID</button>
+                  </span>
+               </div>
+            </div>
+         </form>
+</div>
+{% if seguimiento.count > 0 %}
+
+{% for s in seguimiento %}
+{{s.corte_id.nombre}}
+{{s.barba_id.nombre}}
+{{s.tinte_id.nombre}}
+{{s.peinado_id.nombre}}
+{{s.estetica_id.nombre}}
+
+{{s.corte_id.hora}}
+{{s.barba_id.hora}}
+{{s.tinte_id.hora}}
+{{s.peinado_id.hora}}
+{{s.estetica_id.hora}}
+
+{{s.pago}}
+{{s.estado}}
+{% endfor %}
+{% endif %}
+{% endblock %}

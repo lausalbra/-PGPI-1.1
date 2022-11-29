@@ -223,6 +223,7 @@ def cargo(request):
         precio = total_carrito(request)
         valor = precio.get('total_carrito')
         id_pedido = request.POST['stripeToken']
+        seguimiento = 'http://127.0.0.1:8000/seguimiento/'
 
         charge = stripe.Charge.create(
             customer=customer,
@@ -237,7 +238,7 @@ def cargo(request):
         ###RECIBO DE EMAIL####
 
         subject = "Pago realizado"
-        message = "Se ha realizado su pedido correctamente: \n La cantidad pagada es de: " + str(valor) + "€. \n Tu id del pedido es: " + str(id_pedido)
+        message = "Se ha realizado su pedido correctamente: \n La cantidad pagada es de: " + str(valor) + "€. \n Tu id del pedido es: " + str(id_pedido) + "\n Para ver el seguimiento del pedido " + seguimiento
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [request.POST['email']]
 
@@ -250,3 +251,14 @@ def gracias(request):
 
 def terminos(request):
     return render(request,'terminos.html')
+
+def seguimiento(request):
+    queryset=request.GET.get("buscar")
+    servicios = Seguimiento.objects.all()
+    if queryset:
+        servicios = Seguimiento.objects.filter(
+            Q(seguimiento_id__icontains = queryset)
+        ).distinct()
+    servicios.save()
+    print(servicios)
+    return render(request, 'seguimiento.html', {'seguimiento' : servicios})

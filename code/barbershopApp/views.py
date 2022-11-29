@@ -223,7 +223,6 @@ def cargo(request):
         precio = total_carrito(request)
         valor = precio.get('total_carrito')
         id_pedido = request.POST['stripeToken']
-        seguimiento = 'http://127.0.0.1:8000/seguimiento/'
 
         charge = stripe.Charge.create(
             customer=customer,
@@ -238,7 +237,7 @@ def cargo(request):
         ###RECIBO DE EMAIL####
 
         subject = "Pago realizado"
-        message = "Se ha realizado su pedido correctamente: \n La cantidad pagada es de: " + str(valor) + "€. \n Tu id del pedido es: " + str(id_pedido) + "\n Para ver el seguimiento del pedido " + seguimiento
+        message = "Se ha realizado su pedido correctamente: \n La cantidad pagada es de: " + str(valor) + "€. \n Tu id del pedido es: " + str(id_pedido)
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [request.POST['email']]
 
@@ -248,6 +247,30 @@ def cargo(request):
 
 def gracias(request):
     return render(request, 'gracias.html')
+
+############################################POLITICA################
+
+def pago_tienda(request):
+    if request.method == 'POST':
+        nombre = request.POST["nombre"]
+        email = request.POST["email"]
+
+        precio = total_carrito(request)
+        valor = precio.get('total_carrito')
+
+        carrito = Carrito(request)
+        carrito.limpiar_carrito()
+
+        ###RECIBO DE EMAIL####
+
+        subject = "Pendiente de pagar"
+        message = "Se ha realizado su pedido correctamente: \n La cantidad a pagar es de: " + str(valor) + "€."
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [request.POST['email']]
+
+        send_mail(subject, message, email_from, recipient_list)
+
+    return redirect('home')
 
 def terminos(request):
     return render(request,'terminos.html')

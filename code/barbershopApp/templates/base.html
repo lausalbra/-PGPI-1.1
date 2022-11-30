@@ -57,16 +57,17 @@
                                 <a class="nav-link" href="{% url 'carrito' %}"> <img src ="{% static 'media/carrito.png' %}" alt="" width="25">Carrito<a>
                               </li>
                               <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contactenos</a></li>
+                              <li class="nav-item"><a><h4 align="center"><strong>Seguimiento</h4></strong></a>
+                                 <select name="forma" onchange="location = this.value;">
+                                    <option value="#"></option>
+                                    <option value="{% url 'seguimiento_tinte' %}">seguimiento tinte</option>
+                                    <option value="{% url 'seguimiento_barba' %}">seguimiento barba</option>
+                                    <option value="{% url 'seguimiento_corte' %}">seguimiento corte</option>
+                                    <option value="{% url 'seguimiento_peinado' %}">seguimiento peinado</option>
+                                    <option value="{% url 'seguimiento_estetica' %}">seguimiento estetica</option>
+                                 </select>
+                              </li>
                            </ul>
-                           <select name="forma" onchange="location = this.value;">
-                              <option value="#"></option>
-                              <option value="{% url 'seguimiento_tinte' %}">seguimiento tinte</option>
-                              <option value="{% url 'seguimiento_barba' %}">seguimiento barba</option>
-                              <option value="{% url 'seguimiento_corte' %}">seguimiento corte</option>
-                              <option value="{% url 'seguimiento_peinado' %}">seguimiento peinado</option>
-                              <option value="{% url 'seguimiento_estetica' %}">seguimiento estetica</option>
-                           </select>
-                           <strong><h4 style="color: lightseagreen;">Seguimiento</h4></strong>
                         </div>
                      </nav>
                   </div>

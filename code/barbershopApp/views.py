@@ -285,25 +285,25 @@ def terminos(request):
 
 def seguimiento_corte(request):
     queryset=request.GET.get("buscar")
-    servicios = Cortes.objects.all()
+    servicios = []
     if queryset:
         servicios = Cortes.objects.filter(
-            Q(id == queryset)
+            Q(id__icontains = queryset)
         )
     return render(request, 'cortes/seguimiento.html', {'seguimiento' : servicios})
 
 def seguimiento_barba(request):
     queryset=request.GET.get("buscar")
-    servicios = Barba.objects.all()
+    servicios = []
     if queryset:
         servicios = Barba.objects.filter(
-            Q(id == queryset)
+            Q(id__icontains = queryset)
         )
     return render(request, 'barbas/seguimiento.html', {'seguimiento' : servicios})
 
 def seguimiento_peinado(request):
     queryset=request.GET.get("buscar")
-    servicios = Peinado.objects.all()
+    servicios = []
     if queryset:
         servicios = Peinado.objects.filter(
             Q(id__icontains = queryset)
@@ -312,19 +312,19 @@ def seguimiento_peinado(request):
 
 def seguimiento_tinte(request):
     queryset=request.GET.get("buscar")
-    servicios = Tinte.objects.all()
+    servicios = []
     if queryset:
         servicios = Tinte.objects.filter(
-            Q(id == queryset)
+            Q(id__icontains = queryset)
         )
     return render(request, 'tintes/seguimiento.html', {'seguimiento' : servicios})
 
 def seguimiento_estetica(request):
     queryset=request.GET.get("buscar")
-    servicios = Estética.objects.all()
+    servicios = []
     if queryset:
         servicios = Estética.objects.filter(
-            Q(id == queryset)
+            Q(id__icontains = queryset)
         )
     return render(request, 'esteticas/seguimiento.html', {'seguimiento' : servicios})
 

@@ -23,8 +23,8 @@ class Cortes(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
-    pago = models.IntegerField(choices=opciones_pago)
-    estado = models.IntegerField(choices=opciones_seguimiento)
+    pago = models.IntegerField(choices=opciones_pago, null=True)
+    estado = models.IntegerField(choices=opciones_seguimiento, null=True)
 
 class Barba(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
@@ -33,8 +33,8 @@ class Barba(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
-    pago = models.IntegerField(choices=opciones_pago)
-    estado = models.IntegerField(choices=opciones_seguimiento)
+    pago = models.IntegerField(choices=opciones_pago, null=True)
+    estado = models.IntegerField(choices=opciones_seguimiento, null=True)
 
 class Tinte(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
@@ -43,8 +43,8 @@ class Tinte(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
-    pago = models.IntegerField(choices=opciones_pago)
-    estado = models.IntegerField(choices=opciones_seguimiento)
+    pago = models.IntegerField(choices=opciones_pago, null=True)
+    estado = models.IntegerField(choices=opciones_seguimiento, null=True)
     
 class Peinado(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
@@ -53,8 +53,8 @@ class Peinado(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
-    pago = models.IntegerField(choices=opciones_pago)
-    estado = models.IntegerField(choices=opciones_seguimiento)
+    pago = models.IntegerField(choices=opciones_pago, null=True)
+    estado = models.IntegerField(choices=opciones_seguimiento, null=True)
 
 class Estética(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
@@ -63,8 +63,8 @@ class Estética(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
-    pago = models.IntegerField(choices=opciones_pago)
-    estado = models.IntegerField(choices=opciones_seguimiento)
+    pago = models.IntegerField(choices=opciones_pago, null=True)
+    estado = models.IntegerField(choices=opciones_seguimiento, null=True)
 
 ##########################CLIENTE######################################################################
 

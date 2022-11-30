@@ -7,13 +7,14 @@
   <form method="get">
     <div id="custom-search-input" align = "center">
       <div class="input-group col-md-12">
-        <input type="text" class="from-control" placeholder="Buscar ID del tinte" name="buscar">
+        <input type="text" class="from-control" placeholder="Buscar ID de la barba" name="buscar">
         <span class="input-group-list">
           <button type="submit" class="boton btn-success">Buscar</button>
         </span>
       </div>
     </div>
   </form>
+  {% if seguimiento.count > 0 %}
   <table border="12" style="margin: 0 auto;">
     <tr>
         <td><strong>Nombre</td></strong>
@@ -28,6 +29,7 @@
         </tr>
      {% endfor %}
     </table>
+  {% endif %}
 </div>
 <br>
 <br>

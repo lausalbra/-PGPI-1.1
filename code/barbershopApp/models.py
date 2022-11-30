@@ -4,6 +4,18 @@ from django.db import models
 
 ##########################SERVICIOS######################################################################
 
+opciones_pago = [
+    [0, "reservado"],
+    [1, "pagado"],
+    [2, "pendiente de pago"],
+    [3, "disponible"],
+]
+
+opciones_seguimiento = [
+    [0, "servicio realizado"],
+    [1, "servicio pendiente"],
+]
+
 class Cortes(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
     hora = models.DateTimeField(null=False)
@@ -11,6 +23,8 @@ class Cortes(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
+    pago = models.IntegerField(choices=opciones_pago)
+    estado = models.IntegerField(choices=opciones_seguimiento)
 
 class Barba(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
@@ -19,6 +33,8 @@ class Barba(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
+    pago = models.IntegerField(choices=opciones_pago)
+    estado = models.IntegerField(choices=opciones_seguimiento)
 
 class Tinte(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
@@ -27,7 +43,9 @@ class Tinte(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
-
+    pago = models.IntegerField(choices=opciones_pago)
+    estado = models.IntegerField(choices=opciones_seguimiento)
+    
 class Peinado(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
     hora = models.DateTimeField(null=False)
@@ -35,6 +53,8 @@ class Peinado(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
+    pago = models.IntegerField(choices=opciones_pago)
+    estado = models.IntegerField(choices=opciones_seguimiento)
 
 class Estética(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
@@ -43,28 +63,6 @@ class Estética(models.Model):
     imagen = models.ImageField(upload_to='barbershopApp/static/media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
     precio = models.FloatField(null = False, blank=False)
-
-##########################SEGUIMIENTO######################################################################
-
-opciones_pago = [
-    [0, "reservado"],
-    [1, "pagado"],
-    [2, "pendiente de pago"],
-]
-
-opciones_seguimiento = [
-    [0, "servicio realizado"],
-    [1, "servicio pendiente"],
-]
-
-
-class Seguimiento(models.Model):
-    seguimiento_id = models.CharField(max_length=70)
-    corte_id = models.ForeignKey(Cortes,on_delete=models.CASCADE)
-    barba_id = models.ForeignKey(Barba,on_delete=models.CASCADE)
-    tinte_id = models.ForeignKey(Tinte,on_delete=models.CASCADE)
-    peinado_id = models.ForeignKey(Peinado,on_delete=models.CASCADE)
-    estetica_id = models.ForeignKey(Estética,on_delete=models.CASCADE)
     pago = models.IntegerField(choices=opciones_pago)
     estado = models.IntegerField(choices=opciones_seguimiento)
 

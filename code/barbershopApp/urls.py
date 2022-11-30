@@ -26,6 +26,11 @@ urlpatterns = [
 
    path('terminos/', views.terminos, name='terminos'),
    path('registro/cliente', views.registro_cliente, name='registro'),
-   path('seguimiento/', views.seguimiento, name='seguimiento'),
+
+   path('servicios/tinte/seguimiento', views.seguimiento_tinte, name = 'seguimiento_tinte'),
+   path('servicios/barba/seguimiento', views.seguimiento_barba, name = 'seguimiento_barba'),
+   path('servicios/cortes/seguimiento', views.seguimiento_corte, name = 'seguimiento_corte'),
+   path('servicios/peinado/seguimiento', views.seguimiento_peinado, name = 'seguimiento_peinado'),
+   path('servicios/estetica/seguimiento', views.seguimiento_estetica, name = 'seguimiento_estetica'),
    
 ]

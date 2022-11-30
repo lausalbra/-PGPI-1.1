@@ -7,11 +7,13 @@
         <tr>
             <td><strong>Nombre</td></strong>
             <td><strong>Precio</td></strong>
+            <td><strong>ID del servicio</td></strong>
         </tr>
         {% for key, value in request.session.carrito.items %}
         <tr>
             <td style="color: blueviolet">{{value.nombre}}</td>
             <td style="color: crimson;" align="center">{{value.precio}}</td>
+            <td style="color: crimson;" align="center">{{value.producto_id}}</td>
         </tr>
         {% endfor %} 
     </table>

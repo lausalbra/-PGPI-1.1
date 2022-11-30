@@ -248,7 +248,6 @@ def cargo(request):
 def gracias(request):
     return render(request, 'gracias.html')
 
-############################################POLITICA################
 
 def pago_tienda(request):
     if request.method == 'POST':
@@ -258,30 +257,74 @@ def pago_tienda(request):
         precio = total_carrito(request)
         valor = precio.get('total_carrito')
 
-        carrito = Carrito(request)
-        carrito.limpiar_carrito()
+        for key, value in request.session.items():
+            if key == 'carrito':
+                for id in value:
+                    producto_id = value[id]["producto_id"]
+                    message = "Se ha realizado su pedido correctamente: \n La cantidad a pagar es de: " + str(valor) + "€. \n El id de los pedidos son: " + str(producto_id)
 
         ###RECIBO DE EMAIL####
 
         subject = "Pendiente de pagar"
-        message = "Se ha realizado su pedido correctamente: \n La cantidad a pagar es de: " + str(valor) + "€."
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [request.POST['email']]
 
         send_mail(subject, message, email_from, recipient_list)
 
+        carrito = Carrito(request)
+        carrito.limpiar_carrito()
+
     return redirect('home')
+
+############################################POLITICA################
 
 def terminos(request):
     return render(request,'terminos.html')
 
-def seguimiento(request):
+############################################SEGUIMIENTOS################
+
+def seguimiento_corte(request):
     queryset=request.GET.get("buscar")
-    servicios = Seguimiento.objects.all()
+    servicios = Cortes.objects.all()
     if queryset:
-        servicios = Seguimiento.objects.filter(
-            Q(seguimiento_id__icontains = queryset)
-        ).distinct()
-    servicios.save()
-    print(servicios)
-    return render(request, 'seguimiento.html', {'seguimiento' : servicios})
+        servicios = Cortes.objects.filter(
+            Q(id == queryset)
+        )
+    return render(request, 'cortes/seguimiento.html', {'seguimiento' : servicios})
+
+def seguimiento_barba(request):
+    queryset=request.GET.get("buscar")
+    servicios = Barba.objects.all()
+    if queryset:
+        servicios = Barba.objects.filter(
+            Q(id == queryset)
+        )
+    return render(request, 'barbas/seguimiento.html', {'seguimiento' : servicios})
+
+def seguimiento_peinado(request):
+    queryset=request.GET.get("buscar")
+    servicios = Peinado.objects.all()
+    if queryset:
+        servicios = Peinado.objects.filter(
+            Q(id__icontains = queryset)
+        )
+    return render(request, 'peinados/seguimiento.html', {'seguimiento' : servicios})
+
+def seguimiento_tinte(request):
+    queryset=request.GET.get("buscar")
+    servicios = Tinte.objects.all()
+    if queryset:
+        servicios = Tinte.objects.filter(
+            Q(id == queryset)
+        )
+    return render(request, 'tintes/seguimiento.html', {'seguimiento' : servicios})
+
+def seguimiento_estetica(request):
+    queryset=request.GET.get("buscar")
+    servicios = Estética.objects.all()
+    if queryset:
+        servicios = Estética.objects.filter(
+            Q(id == queryset)
+        )
+    return render(request, 'esteticas/seguimiento.html', {'seguimiento' : servicios})
+

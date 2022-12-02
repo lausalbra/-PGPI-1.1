@@ -203,7 +203,12 @@ def details_estetica(request, servicio_id):
 ######################################################CARRITO#############################################
 
 def carrito(request):
-    return render(request, 'carrito.html')
+    if request.method == 'GET':
+        return render(request, 'carrito.html')
+    else:
+        carrito = Carrito(request)
+        carrito.limpiar_carrito()
+        return redirect('carrito')
 
 ##########################################PASARELA DE PAGO####################################################
 
@@ -221,7 +226,7 @@ def cargo(request):
         )
 
         precio = total_carrito(request)
-        valor = precio.get('total_carrito')
+        valor = int(precio.get('total_carrito'))
         id_pedido = request.POST['stripeToken']
 
         charge = stripe.Charge.create(

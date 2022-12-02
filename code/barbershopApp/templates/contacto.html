@@ -8,8 +8,11 @@
         <form id="request" class="main_form" method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <button type="submit"><h2 style="color: blue;">Enviar</button></h2>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
  </div>
+ <br>
+ <br>
+ 
 {% endblock %}

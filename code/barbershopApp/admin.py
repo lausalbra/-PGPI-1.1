@@ -1,5 +1,5 @@
 from django.contrib import admin
-from barbershopApp.models import *
+from .models import *
 
 # Register your models here.
 

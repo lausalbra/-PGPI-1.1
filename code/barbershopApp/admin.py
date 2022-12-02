@@ -19,6 +19,7 @@ class ContactoAdmin(admin.ModelAdmin):
     list_filter =  ('nombre',)
     search_fields = ('nombre', 'tipo_consulta')
 
+
 admin.site.register(Cortes, ServiciosAdmin)
 admin.site.register(Barba, ServiciosAdmin)
 admin.site.register(Tinte, ServiciosAdmin)

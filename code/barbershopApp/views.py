@@ -17,6 +17,18 @@ stripe.api_key= 'sk_test_51M7HevKBgV3pJGUTG1vx5xjV9Ru0kiKRL18MESqFLPbJ2Ch8OROkZf
 def home(request):
     return render(request, 'index.html')
 
+def registro_cliente(request):
+    if request.method == 'GET':
+        return render(request, 'cliente.html', {'form' : ClienteForm})
+    else:
+        try:
+            form = ClienteForm(request.POST)
+            nuevo_cliente = form.save(commit= False)
+            nuevo_cliente.save()
+            return redirect('home')
+        except ValueError:
+            return render(request, 'cliente.html', {'form' : ClienteForm, 'error' : form.errors})
+
 def contact(request):
     if request.method == 'GET':
         return render(request, 'contacto.html', {'form' : ContactoForm})
@@ -236,5 +248,83 @@ def cargo(request):
 def gracias(request):
     return render(request, 'gracias.html')
 
+
+def pago_tienda(request):
+    if request.method == 'POST':
+        nombre = request.POST["nombre"]
+        email = request.POST["email"]
+
+        precio = total_carrito(request)
+        valor = precio.get('total_carrito')
+
+        for key, value in request.session.items():
+            if key == 'carrito':
+                for id in value:
+                    producto_id = value[id]["producto_id"]
+                    message = "Se ha realizado su pedido correctamente: \n La cantidad a pagar es de: " + str(valor) + "€. \n El id de los pedidos son: " + str(producto_id)
+
+        ###RECIBO DE EMAIL####
+
+        subject = "Pendiente de pagar"
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [request.POST['email']]
+
+        send_mail(subject, message, email_from, recipient_list)
+
+        carrito = Carrito(request)
+        carrito.limpiar_carrito()
+
+    return redirect('home')
+
+############################################POLITICA################
+
 def terminos(request):
     return render(request,'terminos.html')
+
+############################################SEGUIMIENTOS################
+
+def seguimiento_corte(request):
+    queryset=request.GET.get("buscar")
+    servicios = []
+    if queryset:
+        servicios = Cortes.objects.filter(
+            Q(id__icontains = queryset)
+        )
+    return render(request, 'cortes/seguimiento.html', {'seguimiento' : servicios})
+
+def seguimiento_barba(request):
+    queryset=request.GET.get("buscar")
+    servicios = []
+    if queryset:
+        servicios = Barba.objects.filter(
+            Q(id__icontains = queryset)
+        )
+    return render(request, 'barbas/seguimiento.html', {'seguimiento' : servicios})
+
+def seguimiento_peinado(request):
+    queryset=request.GET.get("buscar")
+    servicios = []
+    if queryset:
+        servicios = Peinado.objects.filter(
+            Q(id__icontains = queryset)
+        )
+    return render(request, 'peinados/seguimiento.html', {'seguimiento' : servicios})
+
+def seguimiento_tinte(request):
+    queryset=request.GET.get("buscar")
+    servicios = []
+    if queryset:
+        servicios = Tinte.objects.filter(
+            Q(id__icontains = queryset)
+        )
+    return render(request, 'tintes/seguimiento.html', {'seguimiento' : servicios})
+
+def seguimiento_estetica(request):
+    queryset=request.GET.get("buscar")
+    servicios = []
+    if queryset:
+        servicios = Estética.objects.filter(
+            Q(id__icontains = queryset)
+        )
+    return render(request, 'esteticas/seguimiento.html', {'seguimiento' : servicios})
+

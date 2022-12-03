@@ -7,7 +7,7 @@
   <form method="get">
     <div id="custom-search-input" align = "center">
       <div class="input-group col-md-12">
-        <input type="text" class="from-control" placeholder="Buscar ID de la estetica" name="buscar">
+        <input type="text" class="from-control" placeholder="Buscar ID de la barba" name="buscar">
         <span class="input-group-list">
           <button type="submit" class="boton btn-success">Buscar</button>
         </span>
@@ -17,15 +17,29 @@
   {% if seguimiento.count > 0 %}
   <table border="12" style="margin: 0 auto;">
     <tr>
-        <td><strong>Nombre</td></strong>
-        <td><strong>Pago</td></strong>
-        <td><strong>Estado</td></strong>
+        <td align="center"><strong>Nombre</td></strong>
+        <td align="center"><strong>Pago</td></strong>
+        <td align="center"><strong>Estado</td></strong>
     </tr>
     {% for s in seguimiento %}
         <tr>
             <td>{{s.nombre}}</td>
-            <td>{{s.pago}}</td>
-            <td>{{s.estado}}</td>
+
+            {% if s.pago == 0 %}
+            <td>reservado</td>
+            {% elif s.pago == 1 %}
+            <td>pagado</td>
+            {% elif s.pago == 2 %}
+            <td>pendiente de pago</td>
+            {% elif s.pago == 3 %}
+            <td>disponible</td>
+            {% endif %}
+
+            {% if s.estado == 0 %}
+            <td>servicio realizado</td>
+            {% elif s.estado == 1 %}
+            <td>servicio pendiente</td>
+            {% endif %}
         </tr>
      {% endfor %}
     </table>

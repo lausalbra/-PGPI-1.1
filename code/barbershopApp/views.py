@@ -236,17 +236,22 @@ def cargo(request):
             description = 'Pago realizado'
         )
 
-        carrito = Carrito(request)
-        carrito.limpiar_carrito()
+        for key, value in request.session.items():
+            if key == 'carrito':
+                for id in value:
+                    producto_id = value[id]["producto_id"]
+                    message = "Se ha realizado su pedido correctamente: \n La cantidad a pagar es de: " + str(valor) + "€. \n El id de los pedidos son: " + str(producto_id)
 
         ###RECIBO DE EMAIL####
 
         subject = "Pago realizado"
-        message = "Se ha realizado su pedido correctamente: \n La cantidad pagada es de: " + str(valor) + "€. \n Tu id del pedido es: " + str(id_pedido)
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [request.POST['email']]
 
         send_mail(subject, message, email_from, recipient_list)
+
+        carrito = Carrito(request)
+        carrito.limpiar_carrito()
 
     return redirect('gracias')
 

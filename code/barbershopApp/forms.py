@@ -12,3 +12,8 @@ class ContactoForm(ModelForm):
     class Meta:
         model = Contacto
         fields = '__all__'
+########################################################## Admin
+class BarbaForm(ModelForm):
+    class Meta:
+        model = Barba
+        fields = '__all__'

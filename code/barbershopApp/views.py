@@ -338,3 +338,72 @@ def seguimiento_estetica(request):
         )
     return render(request, 'esteticas/seguimiento.html', {'seguimiento' : servicios})
 
+
+
+############################# BARBA ADMIN ############################
+
+def list_barbasAdmin(request):
+    queryset=request.GET.get("buscar")
+    servicios = Barba.objects.all()
+    if queryset:
+        servicios = Barba.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
+    return render(request, 'barbas/barbaAdmin.html', {'barbas' : servicios})
+
+def details_barbaAdmin(request, servicio_id):
+    if request.method == 'GET':
+        servicio = get_object_or_404(Barba, pk=servicio_id)
+        return render(request, 'barbas/detalles_barbaAdmin.html', {'servicio': servicio})
+    else:
+        try:
+            servicio = get_object_or_404(Barba, pk=servicio_id)
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
+
+             #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
+            return redirect('carrito')
+        except ValueError:
+            return render(request, 'barbas/detalles_barbaAdmin.html', {'servicio': servicio})
+            
+def barba_update(request, servicio_id):
+    if request.method == 'GET':
+        barba = get_object_or_404(Barba, pk=servicio_id)
+        form = BarbaForm(instance=barba)
+        return render(request, 'barbas/update_barbaAdmin.html', {'barba': barba, 'form': form})
+    else:
+        try:
+            barba = get_object_or_404(Barba, pk=servicio_id)
+            form = BarbaForm(request.POST, instance=barba)
+            form.save()
+            return redirect('barbasAdmin')
+        except ValueError:
+            return render(request, 'barbas/update_barbaAdmin.html', {'barba': barba, 'form': BarbaForm,
+                                                          'error': form.errors})
+                                                  
+
+def create_barba(request):
+    if request.method == 'GET':
+        return render(request, 'barbas/create_barbaAdmin.html', {'form': BarbaForm})
+    else:
+        try:
+            form = BarbaForm(request.POST, request.FILES)
+            nuevo_question = form.save(commit=False)
+            nuevo_question.save()
+            return redirect('barbasAdmin')
+        except ValueError:
+            return render(request, 'barbas/create_barbaAdmin.html', {'form': BarbaForm, 'error': form.errors})
+
+def borrarBarbas(request, servicio_id):
+    barba = Barba.objects.get(id = servicio_id)
+    barba.delete()
+    return redirect('barbasAdmin')
+
+def homeAdmin(request):
+    return render(request, 'indexAdmin.html')

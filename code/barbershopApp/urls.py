@@ -32,5 +32,14 @@ urlpatterns = [
    path('servicios/cortes/seguimiento', views.seguimiento_corte, name = 'seguimiento_corte'),
    path('servicios/peinado/seguimiento', views.seguimiento_peinado, name = 'seguimiento_peinado'),
    path('servicios/estetica/seguimiento', views.seguimiento_estetica, name = 'seguimiento_estetica'),
+
+
+############################################ BARBA ADMIN #############################################  
+   path('servicios/barbaAdmin', views.list_barbasAdmin, name = 'barbasAdmin'),
+   path('servicios/barbaAdmin/<int:servicio_id>/', views.details_barbaAdmin, name='detalles_barbaAdmin'),
+   path('servicios/crearBarbaAdmin', views.create_barba, name='create_barbaAdmin'), 
+   path('deleteservicios/barbaAdmin/<int:servicio_id>/', views.borrarBarbas, name='delete_barba'),
+   path('editServicios/barbaAdmin/<int:servicio_id>/', views.barba_update, name='update_barba'),
+   path('indexAdmin', views.homeAdmin, name='indexAdmin'),
    
 ]

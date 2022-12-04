@@ -48,6 +48,9 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item">
+                                 <a class="nav-link" href="{% url 'indexAdmin' %}">Admin</a>
+                              </li>
+                              <li class="nav-item">
                                  <a class="nav-link" href="{% url 'registro' %}">Registro de clientes</a>
                               </li>
                               <li class="nav-item">
@@ -108,7 +111,7 @@
                <li><a href="{% url 'contact' %}">Contactenos</a></li>
 
                <li><a href="{% url 'cortes' %}">Cortes</a></li>
-               <li><a href="{% url 'barbas' %}">Barbas</a></li>
+               <li><a href="{% url 'barbasAdmin' %}">Barbas</a></li>
                <li><a href="{% url 'tintes' %}">Tintes</a></li>
                <li><a href="{% url 'peinados' %}">Peinados</a></li>
                <li><a href="{% url 'esteticas' %}">Esteticas</a></li>

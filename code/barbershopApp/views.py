@@ -539,3 +539,133 @@ def borrarestetica(request, servicio_id):
     barba = Estética.objects.get(id = servicio_id)
     barba.delete()
     return redirect('esteticasAdmin')
+
+############################# peinado ADMIN ############################
+
+def list_peinadosAdmin(request):
+    queryset=request.GET.get("buscar")
+    servicios = Peinado.objects.all()
+    if queryset:
+        servicios = Peinado.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
+    return render(request, 'peinados/peinadoAdmin.html', {'peinados' : servicios})
+
+def details_peinadosAdmin(request, servicio_id):
+    if request.method == 'GET':
+        servicio = get_object_or_404(Peinado, pk=servicio_id)
+        return render(request, 'peinados/peinadoAdmin.html', {'servicio': servicio})
+    else:
+        try:
+            servicio = get_object_or_404(Peinado, pk=servicio_id)
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
+
+             #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
+            return redirect('carrito')
+        except ValueError:
+            return render(request, 'peinados/peinadoAdmin.html', {'servicio': servicio})
+            
+def peinado_update(request, servicio_id):
+    if request.method == 'GET':
+        esteticas = get_object_or_404(Peinado, pk=servicio_id)
+        form = PeinadoForm(instance=esteticas)
+        return render(request, 'peinados/update_peinadoAdmin.html', {'peinado': esteticas, 'form': form})
+    else:
+        try:
+            esteticas = get_object_or_404(Peinado, pk=servicio_id)
+            form = PeinadoForm(request.POST, instance=esteticas)
+            form.save()
+            return redirect('peinadoAdmin')
+        except ValueError:
+            return render(request, 'peinados/update_peinadoAdmin.html', {'peinado': esteticas, 'form': PeinadoForm,
+                                                          'error': form.errors})
+                                                  
+
+def create_peinado(request):
+    if request.method == 'GET':
+        return render(request, 'peinados/create_peinadoAdmin.html', {'form': PeinadoForm})
+    else:
+        try:
+            form = PeinadoForm(request.POST, request.FILES)
+            nuevo_question = form.save(commit=False)
+            nuevo_question.save()
+            return redirect('peinadoAdmin')
+        except ValueError:
+            return render(request, 'peinados/create_peinadoAdmin.html', {'form': PeinadoForm, 'error': form.errors})
+
+def borrarpeinado(request, servicio_id):
+    barba = Peinado.objects.get(id = servicio_id)
+    barba.delete()
+    return redirect('peinadoAdmin')
+
+############################# tinte ADMIN ############################
+
+def list_tinteAdmin(request):
+    queryset=request.GET.get("buscar")
+    servicios = Tinte.objects.all()
+    if queryset:
+        servicios = Tinte.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
+    return render(request, 'tintes/tinteAdmin.html', {'tintes' : servicios})
+
+def details_tinteAdmin(request, servicio_id):
+    if request.method == 'GET':
+        servicio = get_object_or_404(Tinte, pk=servicio_id)
+        return render(request, 'tintes/tinteAdmin.html', {'servicio': servicio})
+    else:
+        try:
+            servicio = get_object_or_404(Tinte, pk=servicio_id)
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
+
+             #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
+            return redirect('carrito')
+        except ValueError:
+            return render(request, 'tintes/tinteAdmin.html', {'servicio': servicio})
+            
+def tinte_update(request, servicio_id):
+    if request.method == 'GET':
+        esteticas = get_object_or_404(Tinte, pk=servicio_id)
+        form = TinteForm(instance=esteticas)
+        return render(request, 'tintes/update_tinteAdmin.html', {'tinte': esteticas, 'form': form})
+    else:
+        try:
+            esteticas = get_object_or_404(Tinte, pk=servicio_id)
+            form = TinteForm(request.POST, instance=esteticas)
+            form.save()
+            return redirect('tinteAdmin')
+        except ValueError:
+            return render(request, 'tintes/update_tinteAdmin.html', {'tinte': esteticas, 'form': TinteForm,
+                                                          'error': form.errors})
+                                                  
+
+def create_tinte(request):
+    if request.method == 'GET':
+        return render(request, 'tintes/create_tinteAdmin.html', {'form': TinteForm})
+    else:
+        try:
+            form = TinteForm(request.POST, request.FILES)
+            nuevo_question = form.save(commit=False)
+            nuevo_question.save()
+            return redirect('tinteAdmin')
+        except ValueError:
+            return render(request, 'tintes/create_tinteAdmin.html', {'form': TinteForm, 'error': form.errors})
+
+def borrartinte(request, servicio_id):
+    barba = Tinte.objects.get(id = servicio_id)
+    barba.delete()
+    return redirect('tinteAdmin')

@@ -55,4 +55,18 @@ urlpatterns = [
    path('servicios/crearEsteticaAdmin', views.create_estetica, name='create_esteticaAdmin'), 
    path('deleteservicios/esteticasAdmin/<int:servicio_id>/', views.borrarestetica, name='delete_estetica'),
    path('editServicios/esteticasAdmin/<int:servicio_id>/', views.estetica_update, name='update_estetica'),
+
+   ############################################ PEINADO ADMIN #############################################  
+   path('servicios/peinadosAdmin', views.list_peinadosAdmin, name = 'peinadoAdmin'),
+   path('servicios/peinadosAdmin/<int:servicio_id>/', views.details_peinadosAdmin, name='detalles_peinadoAdmin'),
+   path('servicios/crearPeinadoAdmin', views.create_peinado, name='create_peinadoAdmin'), 
+   path('deleteservicios/peinadoAdmin/<int:servicio_id>/', views.borrarpeinado, name='delete_peinado'),
+   path('editServicios/peinadoAdmin/<int:servicio_id>/', views.peinado_update, name='update_peinado'),
+
+   ############################################ TINTE ADMIN #############################################  
+   path('servicios/tinteAdmin', views.list_tinteAdmin, name = 'tinteAdmin'),
+   path('servicios/tinteAdmin/<int:servicio_id>/', views.details_tinteAdmin, name='detalles_tinteAdmin'),
+   path('servicios/crearTinteAdmin', views.create_tinte, name='create_tinteAdmin'), 
+   path('deleteservicios/tinteAdmin/<int:servicio_id>/', views.borrartinte, name='delete_tinte'),
+   path('editServicios/tinteAdmin/<int:servicio_id>/', views.tinte_update, name='update_tinte'),
 ]

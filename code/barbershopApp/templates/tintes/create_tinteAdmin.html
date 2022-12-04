@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="app-booth">
+    <h1>Crear sercicio de tinte</h1>
+    {{error}}
+       
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <br />
+         <button class="btn btn-secondary btn-lg" type="submit"
+            onclick="return confirm('¿Quieres crear un nuevo servicio de peinado?');">Crear</button>
+    </form>
+</div>
+<br />
+<button class="btn btn-secondary btn-lg"><a href="{% url 'tinteAdmin' %}">Volver</a></button>
+
+{% endblock %}

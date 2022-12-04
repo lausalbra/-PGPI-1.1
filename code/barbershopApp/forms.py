@@ -27,3 +27,13 @@ class EsteticasForm(ModelForm):
     class Meta:
         model = Estética
         fields = '__all__'
+
+class PeinadoForm(ModelForm):
+    class Meta:
+        model = Peinado
+        fields = '__all__'
+
+class TinteForm(ModelForm):
+    class Meta:
+        model = Tinte
+        fields = '__all__'

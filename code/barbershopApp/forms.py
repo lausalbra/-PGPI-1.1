@@ -17,3 +17,13 @@ class BarbaForm(ModelForm):
     class Meta:
         model = Barba
         fields = '__all__'
+
+class CorteForm(ModelForm):
+    class Meta:
+        model = Cortes
+        fields = '__all__'
+
+class EsteticasForm(ModelForm):
+    class Meta:
+        model = Estética
+        fields = '__all__'

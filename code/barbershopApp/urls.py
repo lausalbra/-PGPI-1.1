@@ -41,5 +41,18 @@ urlpatterns = [
    path('deleteservicios/barbaAdmin/<int:servicio_id>/', views.borrarBarbas, name='delete_barba'),
    path('editServicios/barbaAdmin/<int:servicio_id>/', views.barba_update, name='update_barba'),
    path('indexAdmin', views.homeAdmin, name='indexAdmin'),
+
+   ############################################ CORTE ADMIN #############################################  
+   path('servicios/cortesAdmin', views.list_cortesAdmin, name = 'cortesAdmin'),
+   path('servicios/cortesAdmin/<int:servicio_id>/', views.details_corteAdmin, name='detalles_corteAdmin'),
+   path('servicios/crearCorteAdmin', views.create_corte, name='create_corteAdmin'), 
+   path('deleteservicios/cortesAdmin/<int:servicio_id>/', views.borrarcortes, name='delete_corte'),
+   path('editServicios/cortesAdmin/<int:servicio_id>/', views.corte_update, name='update_corte'),
    
+   ############################################ ESTETICAS ADMIN #############################################  
+   path('servicios/esteticasAdmin', views.list_esteticasAdmin, name = 'esteticasAdmin'),
+   path('servicios/esteticasAdmin/<int:servicio_id>/', views.details_esteticaAdmin, name='detalles_esteticaAdmin'),
+   path('servicios/crearEsteticaAdmin', views.create_estetica, name='create_esteticaAdmin'), 
+   path('deleteservicios/esteticasAdmin/<int:servicio_id>/', views.borrarestetica, name='delete_estetica'),
+   path('editServicios/esteticasAdmin/<int:servicio_id>/', views.estetica_update, name='update_estetica'),
 ]

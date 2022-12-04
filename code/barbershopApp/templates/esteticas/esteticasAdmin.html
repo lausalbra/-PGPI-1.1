@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<br>
+<br>
+<div class="col-md-12 search">
+  <h2>Servicios de estetica disponibles</h2>
+    <form method="get">
+      <div id="custom-search-input">
+        <div class="input-group col-md-12">
+          <input type="text" class="from-control" placeholder="Buscar.." name="buscar">
+          <span class="input-group-list">
+            <button type="submit" class="boton btn-success">Buscar</button>
+          </span>
+        </div>
+      </div>
+    </form>
+    {% if esteticas.count > 0 %}
+    <table border="12" style="margin: 0 auto;">
+        <tr>
+            <td><strong>Nombre</td></strong>
+            <td><strong>Hora</td></strong>
+            <td><strong>Descripcion</td></strong>
+            <td><strong>Precio</td></strong>
+            <td><strong>Disponibilidad</td></strong>  
+            <td><strong>Estado del servicio</td></strong>
+            <td><strong>Estado del pago</td></strong>
+        </tr>
+        {% for s in esteticas %}
+            <tr>
+                <td>{{s.nombre}}</td>
+                <td>{{s.hora}}</td>
+                <td>{{s.descripcion}}</td>
+                <td>{{s.precio}}</td>
+
+                {% if s.disponible == True %}
+                  <td>✅</td>
+                  {% else %}
+                  <td>❌</td>
+                  {% endif %}
+                
+                 
+                {% if s.estado == 0 %}
+                  <td>Servicio realizado</td>
+                 {% else %}
+                  <td>Servicio pendiente</td>
+                 {% endif %}
+                
+                 
+
+                {% if s.pago == 0 %}
+                  <td>Reservado</td>
+                  {% endif %}
+                {% if s.pago == 1 %}
+                  <td>Pagado</td>
+                  {% endif %}
+                {% if s.pago == 2 %}
+                  <td>Pendiente de pago</td>
+                  {% endif %}
+                {% if s.pago == 3 %}
+                  <td>Disponible</td>
+                  {% endif %}
+                   
+                  
+                <td> <button type="button" class="btn btn-link btn-sm btn-rounded" onClick="return confirm('¿Quieres borrar este servicio {{ s.id }}?');">
+                <a class="item" href="{% url 'delete_estetica' s.id %}">Delete</a></button>
+                </td>
+                <td> 
+                <button type="button" class="btn btn-link btn-sm btn-rounded"><a class="item" href="{% url 'update_estetica' s.id %}">Editar</a></button>
+                </td> 
+            </tr>  
+         {% endfor %}
+        </table>
+      {% endif %}
+      
+</div>
+<button class="btn btn-secondary btn-lg"><a href="{% url 'create_esteticaAdmin' %}">Añadir servicio</a></button>
+<br>
+<br>
+{% endblock %}

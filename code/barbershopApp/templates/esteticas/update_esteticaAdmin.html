@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="app-booth">
+    <h1>Actualizar sercicio de estetica</h1>
+    {{error}}
+       
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <br />
+         <button class="btn btn-secondary btn-lg" type="submit"
+            onclick="return confirm('¿Quieres actualizar el servicio de estética?');">Actualizar</button>
+    </form>
+</div>
+<br />
+<button class="btn btn-secondary btn-lg"><a href="{% url 'esteticasAdmin' %}">Volver</a></button>
+
+{% endblock %}

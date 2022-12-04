@@ -354,7 +354,7 @@ def list_barbasAdmin(request):
 def details_barbaAdmin(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Barba, pk=servicio_id)
-        return render(request, 'barbas/detalles_barbaAdmin.html', {'servicio': servicio})
+        return render(request, 'barbas/barbaAdmin.html', {'servicio': servicio})
     else:
         try:
             servicio = get_object_or_404(Barba, pk=servicio_id)
@@ -370,7 +370,7 @@ def details_barbaAdmin(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'barbas/detalles_barbaAdmin.html', {'servicio': servicio})
+            return render(request, 'barbas/barbaAdmin.html', {'servicio': servicio})
             
 def barba_update(request, servicio_id):
     if request.method == 'GET':
@@ -405,5 +405,137 @@ def borrarBarbas(request, servicio_id):
     barba.delete()
     return redirect('barbasAdmin')
 
+
 def homeAdmin(request):
     return render(request, 'indexAdmin.html')
+
+############################# CORTE ADMIN ############################
+
+def list_cortesAdmin(request):
+    queryset=request.GET.get("buscar")
+    servicios = Cortes.objects.all()
+    if queryset:
+        servicios = Cortes.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
+    return render(request, 'cortes/cortesAdmin.html', {'cortes' : servicios})
+
+def details_corteAdmin(request, servicio_id):
+    if request.method == 'GET':
+        servicio = get_object_or_404(Cortes, pk=servicio_id)
+        return render(request, 'cortes/cortesAdmin.html', {'servicio': servicio})
+    else:
+        try:
+            servicio = get_object_or_404(Cortes, pk=servicio_id)
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
+
+             #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
+            return redirect('carrito')
+        except ValueError:
+            return render(request, 'cortes/cortesAdmin.html', {'servicio': servicio})
+            
+def corte_update(request, servicio_id):
+    if request.method == 'GET':
+        cortes = get_object_or_404(Cortes, pk=servicio_id)
+        form = CorteForm(instance=cortes)
+        return render(request, 'cortes/update_corteAdmin.html', {'cortes': cortes, 'form': form})
+    else:
+        try:
+            cortes = get_object_or_404(Cortes, pk=servicio_id)
+            form = CorteForm(request.POST, instance=cortes)
+            form.save()
+            return redirect('cortesAdmin')
+        except ValueError:
+            return render(request, 'cortes/update_corteAdmin.html', {'cortes': cortes, 'form': CorteForm,
+                                                          'error': form.errors})
+                                                  
+
+def create_corte(request):
+    if request.method == 'GET':
+        return render(request, 'cortes/create_corteAdmin.html', {'form': CorteForm})
+    else:
+        try:
+            form = CorteForm(request.POST, request.FILES)
+            nuevo_question = form.save(commit=False)
+            nuevo_question.save()
+            return redirect('cortesAdmin')
+        except ValueError:
+            return render(request, 'cortes/create_corteAdmin.html', {'form': CorteForm, 'error': form.errors})
+
+def borrarcortes(request, servicio_id):
+    cortes = Cortes.objects.get(id = servicio_id)
+    cortes.delete()
+    return redirect('cortesAdmin')
+
+
+############################# esteticas ADMIN ############################
+
+def list_esteticasAdmin(request):
+    queryset=request.GET.get("buscar")
+    servicios = Estética.objects.all()
+    if queryset:
+        servicios = Estética.objects.filter(
+            Q(nombre__icontains = queryset)
+        ).distinct()
+    return render(request, 'esteticas/esteticasAdmin.html', {'esteticas' : servicios})
+
+def details_esteticaAdmin(request, servicio_id):
+    if request.method == 'GET':
+        servicio = get_object_or_404(Estética, pk=servicio_id)
+        return render(request, 'esteticas/esteticasAdmin.html', {'servicio': servicio})
+    else:
+        try:
+            servicio = get_object_or_404(Estética, pk=servicio_id)
+            ##SETEAR ATRIBUTO ENN BBDD
+            setattr(servicio, 'disponible', False)
+            servicio.save()
+            ###############################
+
+             #############AGREGAR PRODUCTO AL CARRITO###############
+            carrito = Carrito(request)
+            carrito.agregar(servicio)
+            ###############################
+
+            return redirect('carrito')
+        except ValueError:
+            return render(request, 'esteticas/esteticasAdmin.html', {'servicio': servicio})
+            
+def estetica_update(request, servicio_id):
+    if request.method == 'GET':
+        esteticas = get_object_or_404(Estética, pk=servicio_id)
+        form = EsteticasForm(instance=esteticas)
+        return render(request, 'esteticas/update_esteticaAdmin.html', {'esteticas': esteticas, 'form': form})
+    else:
+        try:
+            esteticas = get_object_or_404(Estética, pk=servicio_id)
+            form = EsteticasForm(request.POST, instance=esteticas)
+            form.save()
+            return redirect('esteticasAdmin')
+        except ValueError:
+            return render(request, 'esteticas/update_esteticaAdmin.html', {'esteticas': esteticas, 'form': EsteticasForm,
+                                                          'error': form.errors})
+                                                  
+
+def create_estetica(request):
+    if request.method == 'GET':
+        return render(request, 'esteticas/create_esteticaAdmin.html', {'form': EsteticasForm})
+    else:
+        try:
+            form = EsteticasForm(request.POST, request.FILES)
+            nuevo_question = form.save(commit=False)
+            nuevo_question.save()
+            return redirect('esteticasAdmin')
+        except ValueError:
+            return render(request, 'esteticas/create_esteticaAdmin.html', {'form': EsteticasForm, 'error': form.errors})
+
+def borrarestetica(request, servicio_id):
+    barba = Estética.objects.get(id = servicio_id)
+    barba.delete()
+    return redirect('esteticasAdmin')

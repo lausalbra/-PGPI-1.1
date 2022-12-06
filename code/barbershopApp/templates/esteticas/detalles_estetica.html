@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load static %}
 <br>
 
 <div class="container">
@@ -8,12 +7,14 @@
     <br>
     <table border="12" style="margin: 0 auto;">
         <tr>
-            <td><strong>Descripcion</td></strong>
-        <td><strong>Precio</td></strong>
+        <td align="center"><strong>Descripcion</td></strong>
+        <td align="center"><strong>Precio</td></strong>
     </tr>
     <tr>
-        <td>{{servicio.descripcion}}</td>
-        <td>{{servicio.precio}}</td>
+        <td align="center">{{servicio.descripcion}}</td>
+        <td align="center">{{servicio.precio}}</td>
+        <td><img src= "{{MEDIA_URL}}{{servicio.imagen}}" width=300px height=100px></td>
+
     </tr>
     </table>
     <button><a href="{% url 'esteticas' %}" style="color: blue;"><h2>Volver al listado</a></button></h2>
@@ -25,7 +26,7 @@
     <form action="" method="post">
         {% csrf_token %}
         <button type="submit"><h2 style="color: blue;">Agregar al carrito</button></h2>
-        <img src="{% static 'media/carrito.png' %}" alt="#" width="60" >
+        <img src="/media/carrito.png" alt="#" width="60" >
     </form>
     {% endif %}
 </div>

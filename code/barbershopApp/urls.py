@@ -1,7 +1,11 @@
 from django.urls import path
 from barbershopApp import views
+from django.conf import settings
+import django.views
+from django.conf.urls.static import static
 
 urlpatterns = [
+   path('media/<path>', django.views.static.serve, {'document_root': settings.MEDIA_ROOT}),
    path('', views.home, name='home'),
    path('contacto/', views.contact, name = 'contact'),
 
@@ -69,4 +73,5 @@ urlpatterns = [
    path('servicios/crearTinteAdmin', views.create_tinte, name='create_tinteAdmin'), 
    path('deleteservicios/tinteAdmin/<int:servicio_id>/', views.borrartinte, name='delete_tinte'),
    path('editServicios/tinteAdmin/<int:servicio_id>/', views.tinte_update, name='update_tinte'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# agregado de static para permitir la visulaización de las imagenes desde la BD en las plantillas

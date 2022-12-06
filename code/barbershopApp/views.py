@@ -93,7 +93,7 @@ def list_esteticas(request):
 def details_corte(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Cortes, pk=servicio_id)
-        return render(request, 'cortes/detalles_corte.html', {'servicio': servicio})
+        return render(request, 'cortes/detalles_corte.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Cortes, pk=servicio_id)
@@ -109,13 +109,13 @@ def details_corte(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'cortes/detalles_corte.html', {'servicio': servicio})
+            return render(request, 'cortes/detalles_corte.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
 
 
 def details_barba(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Barba, pk=servicio_id)
-        return render(request, 'barbas/detalles_barba.html', {'servicio': servicio})
+        return render(request, 'barbas/detalles_barba.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Barba, pk=servicio_id)
@@ -131,13 +131,13 @@ def details_barba(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'barbas/detalles_barba.html', {'servicio': servicio})
+            return render(request, 'barbas/detalles_barba.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
 
 
 def details_tinte(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Tinte, pk=servicio_id)
-        return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio})
+        return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Tinte, pk=servicio_id)
@@ -153,13 +153,13 @@ def details_tinte(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio})
+            return render(request, 'tintes/detalles_tinte.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
 
 
 def details_peinado(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Peinado, pk=servicio_id)
-        return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio})
+        return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Peinado, pk=servicio_id)
@@ -175,13 +175,13 @@ def details_peinado(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio})
+            return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
 
 
 def details_estetica(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Estética, pk=servicio_id)
-        return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio})
+        return render(request, 'peinados/detalles_peinado.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Estética, pk=servicio_id)
@@ -197,7 +197,7 @@ def details_estetica(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'esteticas/detalles_estetica.html', {'servicio': servicio})
+            return render(request, 'esteticas/detalles_estetica.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
 
 
 ######################################################CARRITO#############################################

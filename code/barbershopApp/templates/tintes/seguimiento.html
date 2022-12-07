@@ -15,7 +15,7 @@
     </div>
   </form>
   {% if seguimiento.count > 0 %}
-  <table border="12" style="margin: 0 auto;">
+  <table border="12" style="margin: 0 auto;" id="table">
     <tr>
         <td align="center"><strong>Nombre</td></strong>
         <td align="center"><strong>Pago</td></strong>
@@ -40,6 +40,16 @@
             {% elif s.estado == 1 %}
             <td>servicio pendiente</td>
             {% endif %}
+                           
+            {% if s.pago == 2 %}
+            <td>
+              <form method="POST" action="{% url 'home' %}">
+                {% csrf_token %}
+                <button id="boton" class="btn btn-primary" type="submit" onclick="cancelarCita('table');
+                 return alert('su cita ha sido cancelada correctamente')">Cancelar cita</button>
+              </form>
+            </td>
+            {% endif %}
         </tr>
      {% endfor %}
     </table>
@@ -47,4 +57,12 @@
 </div>
 <br>
 <br>
+
+<script>
+  function cancelarCita(id) {
+    var element = document.getElementById(id);
+    element.parentNode.removeChild(element);
+    window.location='http://localhost:8000/'; 
+  }
+</script>
 {% endblock %}

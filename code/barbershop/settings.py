@@ -44,12 +44,12 @@ INSTALLED_APPS = [
 ]
 
 MATERIAL_ADMIN_SITE = {
-    'FAVICON':  'media/logo.png',  # Admin site favicon (path to static should be specified)
+    'FAVICON':  '/logo.png',  # Admin site favicon (path to static should be specified)
     'MAIN_BG_COLOR':  'black',  # Admin site main color, css color should be specified
     'MAIN_HOVER_COLOR':  'blue',  # Admin site main hover color, css color should be specified
-    'PROFILE_PICTURE':  'media/Ilustracion_sin_titulo.png',  # Admin site profile picture (path to static should be specified)
-    'LOGIN_LOGO': 'media/Ilustracion_sin_titulo.png',  # Admin site logo on login page (path to static should be specified)
-    'LOGOUT_LOGO' : 'media/Ilustracion_sin_titulo.png',
+    'PROFILE_PICTURE':  '/Ilustracion_sin_titulo.png',  # Admin site profile picture (path to static should be specified)
+    'LOGIN_LOGO': '/Ilustracion_sin_titulo.png',  # Admin site logo on login page (path to static should be specified)
+    'LOGOUT_LOGO' : '/Ilustracion_sin_titulo.png',
     'SHOW_THEMES':  True,  #  Show default admin themes button
     'SHOW_COUNTS': True, # Show instances counts for each model
 }

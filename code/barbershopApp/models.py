@@ -18,7 +18,7 @@ opciones_seguimiento = [
 
 class Cortes(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
-    hora = models.DateTimeField(null=False)
+    hora = models.DateTimeField(null=False, help_text="Año-Mes-Dia Hora:Minuto")
     disponible = models.BooleanField(blank=False, null=False)
     imagen = models.ImageField(upload_to='media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
@@ -28,7 +28,7 @@ class Cortes(models.Model):
 
 class Barba(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
-    hora = models.DateTimeField(null=False)
+    hora = models.DateTimeField(null=False, help_text="Año-Mes-Dia Hora:Minuto")
     disponible = models.BooleanField(blank=False, null=False)
     imagen = models.ImageField(upload_to='media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
@@ -38,7 +38,7 @@ class Barba(models.Model):
 
 class Tinte(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
-    hora = models.DateTimeField(null=False)
+    hora = models.DateTimeField(null=False, help_text="Año-Mes-Dia Hora:Minuto")
     disponible = models.BooleanField(blank=False, null=False)
     imagen = models.ImageField(upload_to='media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
@@ -48,7 +48,7 @@ class Tinte(models.Model):
     
 class Peinado(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
-    hora = models.DateTimeField(null=False)
+    hora = models.DateTimeField(null=False, help_text="Año-Mes-Dia Hora:Minuto")
     disponible = models.BooleanField(blank=False, null=False)
     imagen = models.ImageField(upload_to='media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)
@@ -58,7 +58,7 @@ class Peinado(models.Model):
 
 class Estética(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
-    hora = models.DateTimeField(null=False)
+    hora = models.DateTimeField(null=False, help_text="Año-Mes-Dia Hora:Minuto")
     disponible = models.BooleanField(blank=False, null=False)
     imagen = models.ImageField(upload_to='media', null=False, blank=False)
     descripcion = models.TextField(max_length=255, blank=False, null=False)

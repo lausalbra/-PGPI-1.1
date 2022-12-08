@@ -20,7 +20,7 @@ RUN pip install django-material-admin
 
 RUN mkdir /app/barbershop
 
-RUN git clone https://github.com/rubsuadav/PGPI-1.1.git /app/barbershop
+RUN git clone https://github.com/lausalbra/PGPI-1.1.git /app/barbershop
 
 COPY . .
 

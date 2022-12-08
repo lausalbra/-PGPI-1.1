@@ -15,6 +15,7 @@ urlpatterns = [
    path('pago/tienda', views.pago_tienda, name='pago_tienda'),
    path('cargo/', views.cargo, name='cargo'),
    path('gracias/', views.gracias, name='gracias'),
+   path('formularioEnviado/', views.formularioEnviado, name='formularioEnviado'),
 
    path('servicios/cortes', views.list_cortes, name = 'cortes'),
    path('servicios/barba', views.list_barbas, name = 'barbas'),

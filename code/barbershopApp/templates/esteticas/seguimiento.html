@@ -45,7 +45,7 @@
             <td>
               <form method="POST" action="{% url 'home' %}">
                 {% csrf_token %}
-                <button id="boton" class="btn btn-primary" type="submit" onclick="cancelarCita('table');
+                <button id="boton" class="btn btn-secondary btn-sm" type="submit" onclick="cancelarCita('table');
                  return alert('su cita ha sido cancelada correctamente')">Cancelar cita</button>
               </form>
             </td>

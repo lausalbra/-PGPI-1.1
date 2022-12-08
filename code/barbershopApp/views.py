@@ -25,7 +25,7 @@ def registro_cliente(request):
             form = ClienteForm(request.POST)
             nuevo_cliente = form.save(commit= False)
             nuevo_cliente.save()
-            return redirect('home')
+            return redirect('formularioEnviado')
         except ValueError:
             return render(request, 'cliente.html', {'form' : ClienteForm, 'error' : form.errors})
 
@@ -37,9 +37,10 @@ def contact(request):
             form = ContactoForm(request.POST)
             nuevo_cliente = form.save(commit= False)
             nuevo_cliente.save()
-            return redirect('home')
+            return redirect('formularioEnviado')
         except ValueError:
             return render(request, 'contacto.html', {'form' : ContactoForm, 'error' : form.errors})
+
 
 ##########################################LISTs##########################################
 
@@ -284,12 +285,16 @@ def pago_tienda(request):
         carrito = Carrito(request)
         carrito.limpiar_carrito()
 
-    return redirect('home')
+    return redirect('gracias')
 
 ############################################POLITICA################
 
 def terminos(request):
     return render(request,'terminos.html')
+############################################################
+def formularioEnviado(request):
+    return render(request,'formulario_enviado.html')
+
 
 ############################################SEGUIMIENTOS################
 

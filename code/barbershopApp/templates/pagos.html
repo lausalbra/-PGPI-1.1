@@ -40,7 +40,7 @@
     <form action="{% url 'pago_tienda' %}" method="POST">{% csrf_token %}
         <div class="form-row">
             <label for="nombre"><h2>Nombre y apellido</h2></label>
-            <input class="form-control" type="text" name ="nombre" placeholder="Pepito Chocolatero" required>
+            <input class="form-control" type="text" name ="nombre" placeholder="Nombre Apellidos" required>
         </div>
         <br>
 
@@ -50,11 +50,11 @@
         </div>
         <br>
         <input type="checkbox" name="agree" onclick="" required />
-        <a for="agree">Pagar en tienda</a><br><br>
+        <a for="agree">Pagar en tienda.</a>
         <br>
         <input type="checkbox" name="agree" onclick="" required />
         <a href='/terminos' for="agree">Acepto los términos y condiciones...</a><br><br>
-        <button type="submit" class="btn btn-primary">Pagar</a></button>
+        <button type="submit" class="btn btn-secondary">Pagar</a></button>
     </form>
 
     <br>
@@ -86,7 +86,7 @@
         <br>
         <input type="checkbox" name="agree" onclick="" required />
         <a href='/terminos' for="agree">Acepto los términos y condiciones...</a><br><br>
-        <button type="submit" class="btn btn-lg btn-success" onclick="return confirm('¿seguro que quiere realizar el pedido?')">Pagar online</button>
+        <button type="submit" class="btn btn-secondary" onclick="return confirm('¿seguro que quiere realizar el pedido?')">Pagar online</button>
     </form>
 </div>
 

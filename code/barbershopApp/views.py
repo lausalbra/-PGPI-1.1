@@ -354,7 +354,7 @@ def list_barbasAdmin(request):
 def details_barbaAdmin(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Barba, pk=servicio_id)
-        return render(request, 'barbas/barbaAdmin.html', {'servicio': servicio})
+        return render(request, 'barbas/barbaAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Barba, pk=servicio_id)
@@ -370,7 +370,7 @@ def details_barbaAdmin(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'barbas/barbaAdmin.html', {'servicio': servicio})
+            return render(request, 'barbas/barbaAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
             
 def barba_update(request, servicio_id):
     if request.method == 'GET':
@@ -380,7 +380,7 @@ def barba_update(request, servicio_id):
     else:
         try:
             barba = get_object_or_404(Barba, pk=servicio_id)
-            form = BarbaForm(request.POST, instance=barba)
+            form = BarbaForm(request.POST,request.FILES, instance=barba)
             form.save()
             return redirect('barbasAdmin')
         except ValueError:
@@ -423,7 +423,7 @@ def list_cortesAdmin(request):
 def details_corteAdmin(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Cortes, pk=servicio_id)
-        return render(request, 'cortes/cortesAdmin.html', {'servicio': servicio})
+        return render(request, 'cortes/cortesAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Cortes, pk=servicio_id)
@@ -439,7 +439,7 @@ def details_corteAdmin(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'cortes/cortesAdmin.html', {'servicio': servicio})
+            return render(request, 'cortes/cortesAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
             
 def corte_update(request, servicio_id):
     if request.method == 'GET':
@@ -449,7 +449,7 @@ def corte_update(request, servicio_id):
     else:
         try:
             cortes = get_object_or_404(Cortes, pk=servicio_id)
-            form = CorteForm(request.POST, instance=cortes)
+            form = CorteForm(request.POST, request.FILES, instance=cortes)
             form.save()
             return redirect('cortesAdmin')
         except ValueError:
@@ -489,7 +489,7 @@ def list_esteticasAdmin(request):
 def details_esteticaAdmin(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Estética, pk=servicio_id)
-        return render(request, 'esteticas/esteticasAdmin.html', {'servicio': servicio})
+        return render(request, 'esteticas/esteticasAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Estética, pk=servicio_id)
@@ -505,7 +505,7 @@ def details_esteticaAdmin(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'esteticas/esteticasAdmin.html', {'servicio': servicio})
+            return render(request, 'esteticas/esteticasAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
             
 def estetica_update(request, servicio_id):
     if request.method == 'GET':
@@ -515,7 +515,7 @@ def estetica_update(request, servicio_id):
     else:
         try:
             esteticas = get_object_or_404(Estética, pk=servicio_id)
-            form = EsteticasForm(request.POST, instance=esteticas)
+            form = EsteticasForm(request.POST,request.FILES, instance=esteticas)
             form.save()
             return redirect('esteticasAdmin')
         except ValueError:
@@ -554,7 +554,7 @@ def list_peinadosAdmin(request):
 def details_peinadosAdmin(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Peinado, pk=servicio_id)
-        return render(request, 'peinados/peinadoAdmin.html', {'servicio': servicio})
+        return render(request, 'peinados/peinadoAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Peinado, pk=servicio_id)
@@ -570,7 +570,7 @@ def details_peinadosAdmin(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'peinados/peinadoAdmin.html', {'servicio': servicio})
+            return render(request, 'peinados/peinadoAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
             
 def peinado_update(request, servicio_id):
     if request.method == 'GET':
@@ -580,7 +580,7 @@ def peinado_update(request, servicio_id):
     else:
         try:
             esteticas = get_object_or_404(Peinado, pk=servicio_id)
-            form = PeinadoForm(request.POST, instance=esteticas)
+            form = PeinadoForm(request.POST, request.FILES, instance=esteticas)
             form.save()
             return redirect('peinadoAdmin')
         except ValueError:
@@ -619,7 +619,7 @@ def list_tinteAdmin(request):
 def details_tinteAdmin(request, servicio_id):
     if request.method == 'GET':
         servicio = get_object_or_404(Tinte, pk=servicio_id)
-        return render(request, 'tintes/tinteAdmin.html', {'servicio': servicio})
+        return render(request, 'tintes/tinteAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
     else:
         try:
             servicio = get_object_or_404(Tinte, pk=servicio_id)
@@ -635,7 +635,7 @@ def details_tinteAdmin(request, servicio_id):
 
             return redirect('carrito')
         except ValueError:
-            return render(request, 'tintes/tinteAdmin.html', {'servicio': servicio})
+            return render(request, 'tintes/tinteAdmin.html', {'servicio': servicio, 'MEDIA_URL': settings.MEDIA_URL})
             
 def tinte_update(request, servicio_id):
     if request.method == 'GET':

@@ -71,7 +71,7 @@ class Estética(models.Model):
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100, blank=False, null=False)
     apellidos =  models.CharField(max_length=100, blank=False, null=False)
-    fecha_nacimiento = models.DateField(blank=False, null=False)
+    fecha_nacimiento = models.DateField(blank=False, null=False, help_text="Año-Mes-Dia")
     email = models.EmailField(blank=False, null=False, unique=True)
 
 ################################################FORMULARIO DE CONTACTO##############################3
@@ -88,7 +88,7 @@ class Contacto(models.Model):
     correo = models.EmailField()
     tipo_consulta = models.IntegerField(choices=opciones_conultas)
     mensaje = models.TextField()
-    avisos = models.BooleanField()
+    
 
     def __str__(self):
         return self.nombre

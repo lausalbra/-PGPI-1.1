@@ -15,7 +15,7 @@ class ClienteAdmin(admin.ModelAdmin):
     search_fields = ('nombre', )
 
 class ContactoAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'correo', 'tipo_consulta', 'mensaje', 'avisos')
+    list_display = ('nombre', 'correo', 'tipo_consulta', 'mensaje')
     list_filter =  ('nombre',)
     search_fields = ('nombre', 'tipo_consulta')
 

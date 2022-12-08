@@ -14,23 +14,23 @@
     </tr>
     <tr>
         <td align="center">{{servicio.descripcion}}</td>
-        <td align="center">{{servicio.precio}}</td>
+        <td align="center">{{servicio.precio}}€</td>
         <td><img src= "{{MEDIA_URL}}{{servicio.imagen}}" width=100px height=50px></td>
-
-    </tr>
-    </table>
-    <button><a href="{% url 'esteticas' %}" style="color: blue;"><h2>Volver al listado</a></button></h2>
-</div>
-<br/>
-<br>
-{% if servicio.disponible == True %}
+        <td>{% if servicio.disponible == True %}
 <div class="container">
     <form action="" method="post">
         {% csrf_token %}
-        <button type="submit"><h2 style="color: blue;">Agregar al carrito</button></h2>
-        <img src="/media/carrito.png" alt="#" width="60" >
+        <button type="submit"class="btn btn-secondary btn-sm">Agregar al carrito</h2>
+        <img src="/media/carrito.png" alt="#" width="20" >
     </form>
     {% endif %}
+</div></td>
+    </tr>
+    </table>
+    <button><a href="{% url 'esteticas' %}" class="btn btn-outline-dark">Volver al listado</a></button>
 </div>
+<br/>
+<br>
+
 <br>
 {% endblock %}

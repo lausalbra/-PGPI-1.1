@@ -5,15 +5,18 @@
 <br>
 
 <div class="col-sm-6" align="center">
+    <h2><strong style="color: rgb(0, 0, 0)">FORMULARIO DE REGISTRO DE CLIENTE</strong></h2>
     <p>{{error}}</p>
     <form method="POST">
         {% csrf_token %}
-        {{form.as_div}}
+       
+        <p><label for="name">Nombre: </label>{{form.nombre}}</p>
+        <p><label for="name">Apellidos: </label>{{form.apellidos}}</p>
+        <p><label for="name">Fecha de nacimiento: </label><input type="date" name="fecha_nacimiento"></p>
+        <p><label for="name">Email: </label>{{form.email}}</p>
         <input type="checkbox" name="agree" onclick="" required />
         <a href='/terminos' for="agree">Acepto los términos y condiciones...</a><br><br>
-            
-        
-        <button type="submit" name='next' class="btn btn-lg btn-success">Registro</button>
+        <button type="submit" name='next' class="btn btn-outline-dark">Registro</button>
         </form>
     </form>
 </div>

@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+<br>
 <div class="content">
+   <div class="container" align="center">
+         <h3><strong>Resumen de compra</strong></h3>
+    </div>
     {% if request.session.carrito.items %}
     <table border="12" style="margin: 0 auto;">
         <tr>
@@ -20,24 +24,24 @@
     <br>
     <br>
 <div class="container" align="center">
+    <h3 style="color: red"><strong>Total compra: {{total_carrito}} €</strong></h3>
     <form  action="{% url 'carrito' %}" method="POST">{% csrf_token %}
-        <button type="submit" class="btn btn-danger" onclick="return confirm('¿seguro que quieres eliminar los servicios del carrito?')">Borrar productos</button>
+        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro que quieres eliminar los servicios del carrito?')">Borrar productos</button>
     </form>
 </div>
+<br>
   
-    <div class="container">
+    <div class="container"align="center">
         <div class="col-md-12">
-            <h3 style="color: red"><strong>Total compra: {{total_carrito}} €</strong></h3>
-            <button class="btn btn-primary"><a href="{% url 'pago' %}"><p class="container" style="color: white">Pagar</p></a></button>
+            
+            <button class="btn btn-secondary "><a href="{% url 'pago' %}">Pagar</p></a></button>
+            
             <br>
-            <br>
-        </div>
-
-        <div class="col-xs-6 col-sm-3">
-            <button class="btn btn-lg btn-success"><a href="{% url 'home' %}"><p class="container" style="color: white">Volver</p></a></button>
         </div>
     </div>
-
+    <div class="col-xs-6 col-sm-3">
+        <button class="btn btn-outline-dark"><a href="{% url 'home' %}">Volver</a></button>
+    </div>
     {% else %}
     <div class="alert alert-danger text-center"> Sin productos </div>
     {% endif %}

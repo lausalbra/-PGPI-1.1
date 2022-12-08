@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div id="app-booth">
+<div  id="app-booth" class="container" align="left">
     <h1>Crear sercicio de estética</h1>
     {{error}}
        
@@ -9,11 +9,11 @@
         {% csrf_token %}
         {{form.as_p}}
         <br />
-         <button class="btn btn-secondary btn-lg" type="submit"
+         <button class="btn btn-outline-dark" type="submit"
             onclick="return confirm('¿Quieres crear un nuevo servicio de estetica?');">Crear</button>
     </form>
 </div>
 <br />
-<button class="btn btn-secondary btn-lg"><a href="{% url 'esteticasAdmin' %}">Volver</a></button>
+<button class="btn btn-secondary"><a href="{% url 'esteticasAdmin' %}">Volver</a></button>
 
 {% endblock %}

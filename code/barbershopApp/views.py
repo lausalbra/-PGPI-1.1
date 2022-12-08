@@ -349,7 +349,7 @@ def list_barbasAdmin(request):
         servicios = Barba.objects.filter(
             Q(nombre__icontains = queryset)
         ).distinct()
-    return render(request, 'barbas/barbaAdmin.html', {'barbas' : servicios})
+    return render(request, 'barbas/barbaAdmin.html', {'barbas' : servicios, 'MEDIA_URL': settings.MEDIA_URL})
 
 def details_barbaAdmin(request, servicio_id):
     if request.method == 'GET':
@@ -418,7 +418,7 @@ def list_cortesAdmin(request):
         servicios = Cortes.objects.filter(
             Q(nombre__icontains = queryset)
         ).distinct()
-    return render(request, 'cortes/cortesAdmin.html', {'cortes' : servicios})
+    return render(request, 'cortes/cortesAdmin.html', {'cortes' : servicios, 'MEDIA_URL': settings.MEDIA_URL})
 
 def details_corteAdmin(request, servicio_id):
     if request.method == 'GET':
@@ -484,7 +484,7 @@ def list_esteticasAdmin(request):
         servicios = Estética.objects.filter(
             Q(nombre__icontains = queryset)
         ).distinct()
-    return render(request, 'esteticas/esteticasAdmin.html', {'esteticas' : servicios})
+    return render(request, 'esteticas/esteticasAdmin.html', {'esteticas' : servicios, 'MEDIA_URL': settings.MEDIA_URL})
 
 def details_esteticaAdmin(request, servicio_id):
     if request.method == 'GET':
@@ -549,7 +549,7 @@ def list_peinadosAdmin(request):
         servicios = Peinado.objects.filter(
             Q(nombre__icontains = queryset)
         ).distinct()
-    return render(request, 'peinados/peinadoAdmin.html', {'peinados' : servicios})
+    return render(request, 'peinados/peinadoAdmin.html', {'peinados' : servicios, 'MEDIA_URL': settings.MEDIA_URL})
 
 def details_peinadosAdmin(request, servicio_id):
     if request.method == 'GET':
@@ -614,7 +614,7 @@ def list_tinteAdmin(request):
         servicios = Tinte.objects.filter(
             Q(nombre__icontains = queryset)
         ).distinct()
-    return render(request, 'tintes/tinteAdmin.html', {'tintes' : servicios})
+    return render(request, 'tintes/tinteAdmin.html', {'tintes' : servicios, 'MEDIA_URL': settings.MEDIA_URL})
 
 def details_tinteAdmin(request, servicio_id):
     if request.method == 'GET':
@@ -645,7 +645,7 @@ def tinte_update(request, servicio_id):
     else:
         try:
             esteticas = get_object_or_404(Tinte, pk=servicio_id)
-            form = TinteForm(request.POST, instance=esteticas)
+            form = TinteForm(request.POST,request.FILES,  instance=esteticas)
             form.save()
             return redirect('tinteAdmin')
         except ValueError:

@@ -3,12 +3,14 @@
 {% load static %}
 <div class="contact">
     <div class="container">
-        <h2><strong style="color: blueviolet">FORMULARIO DE ATENCION AL CLIENTE</strong></h2>
+        <h2><strong style="color: rgb(0, 0, 0)">FORMULARIO DE ATENCION AL CLIENTE</strong></h2>
         {{error}}
         <form id="request" class="main_form" method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <input type="checkbox" name="agree" onclick="" required />
+            <a href='/terminos' for="agree">Acepto los términos y condiciones...</a><br><br>
+            <button type="submit" class="btn btn-outline-dark">Enviar</button>
         </form>
     </div>
  </div>

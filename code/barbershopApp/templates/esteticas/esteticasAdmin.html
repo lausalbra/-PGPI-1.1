@@ -18,6 +18,7 @@
     {% if esteticas.count > 0 %}
     <table border="12" style="margin: 0 auto;">
         <tr>
+            <td><strong></td></strong>
             <td><strong>Nombre</td></strong>
             <td><strong>Hora</td></strong>
             <td><strong>Descripcion</td></strong>
@@ -28,10 +29,11 @@
         </tr>
         {% for s in esteticas %}
             <tr>
+                <td><img src= "{{MEDIA_URL}}{{s.imagen}}"  width=100px height=50px></td>
                 <td>{{s.nombre}}</td>
                 <td>{{s.hora}}</td>
                 <td>{{s.descripcion}}</td>
-                <td>{{s.precio}}</td>
+                <td>{{s.precio}}€</td>
 
                 {% if s.disponible == True %}
                   <td>✅</td>
@@ -74,7 +76,10 @@
       {% endif %}
       
 </div>
-<button class="btn btn-secondary btn-lg"><a href="{% url 'create_esteticaAdmin' %}">Añadir servicio</a></button>
+<br>
+<div class="text-center">
+<button class="btn btn-outline-dark"><a href="{% url 'create_esteticaAdmin' %}">Añadir servicio</a></button>
+</div>
 <br>
 <br>
 {% endblock %}
